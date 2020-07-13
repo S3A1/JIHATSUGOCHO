@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MainDisp</string>
+    <string name="txtQuestion">問題</string>
+    <string name="txtAnswer">解答</string>
+    <string name="btnChange">編集</string>
+    <string name="btnBack">前の問題へ</string>
+    <string name="btnNext">次の問題へ</string>
+    <string name="strQuestion">問題文</string>
+    <string name="strAnswer">解答文</string>
+    <string name="btnCancel">キャンセル</string>
+    <string name="btnDone">変更</string>
+    <string name="btnWarpDisp07">Disp07へ</string>
+    <string name="btnHome">リストへ</string>
 </resources>
