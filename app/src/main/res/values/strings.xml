@@ -15,4 +15,5 @@
     <string name="btnDelete">削除</string>
     <string name="btnAdd">追加</string>
     <string name="btnWarpDisp08">Disp08へ</string>
+    <string name="title_activity_disp21">Disp21</string>
 </resources>
