@@ -12,4 +12,5 @@
     <string name="btnWarpDisp07">Disp07へ</string>
     <string name="btnHome">リストへ</string>
     <string name="title_activity_disp02">Disp02</string>
+    <string name="btnDelete">削除</string>
 </resources>

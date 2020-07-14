@@ -37,6 +37,7 @@ class Disp07 : AppCompatActivity() {
     fun setQuestion(){
         txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER])
         txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.PAGE_NUMBER])
+        txtNUM.setText(GLOBAL.PAGE_NUMBER.toString())
     }
 
     fun tap_btnChange(view : View?){
@@ -47,6 +48,31 @@ class Disp07 : AppCompatActivity() {
     fun tap_btnHome(view : View?){
         val intent= Intent(this,MainActivity::class.java)
         startActivity(intent)
+    }
+
+    fun tap_btnDelete(view : View?){
+        DeleteQuestion()
+        setQuestion();
+    }
+
+    fun DeleteQuestion(){
+        //削除対象が最終番であった場合は削除しポインタを一つ戻す
+        if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER+1]==null){
+            GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=null
+            GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=null
+            GLOBAL.PAGE_NUMBER-=1;
+        }
+        else {
+            //削除対象から後の項番をひとつづつずらす
+            for (i in GLOBAL.PAGE_NUMBER..118) {
+                GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + i] = GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
+                GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + i] = GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
+            }
+        }
+        //末尾にnullを追加
+        GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+119]=null
+        GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+119]=null
+
     }
 
 
