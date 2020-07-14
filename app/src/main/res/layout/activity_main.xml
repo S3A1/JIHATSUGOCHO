@@ -43,5 +43,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/btnWarpDisp07" app:layout_anchorGravity="end|top"
             app:layout_anchor="@+id/include" android:onClick="tap_btnWarpDisp07"/>
+    <Button
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button"/>
+    <Button
+            android:text="@string/btnWarpDisp08"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/btnWarpDisp08" app:layout_anchorGravity="end|center"
+            app:layout_anchor="@+id/include" android:onClick="tap_btnWarpDisp08"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

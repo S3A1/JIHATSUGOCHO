@@ -18,8 +18,9 @@ class Disp07 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp07)
+        txtListName.setText(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         txtAnswer.setVisibility(View.INVISIBLE)
-        setQuestion()
+        setQuestion();
     }
 
     //次ボタン押された場合

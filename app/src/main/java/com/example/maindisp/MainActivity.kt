@@ -31,17 +31,8 @@ class MainActivity : AppCompatActivity() {
             // ダイアログ表示
             dialog.openDialog(supportFragmentManager)
         }
-
-        //insert test
-
         list.setOnClickListener{tap_btnWarpDisp02(it)}
-    }
-    fun tap_btnWarpDisp02(view:View?){
-        val intent = Intent(this, Disp02::class.java)
-        startActivity(intent)
-    }
 
-    fun tap_btnWarpDisp07(view: View?){
         GLOBAL.QUESTION[0]="Q1"
         GLOBAL.ANSWER[0]="A1"
         GLOBAL.QUESTION[1]="Q2"
@@ -50,7 +41,22 @@ class MainActivity : AppCompatActivity() {
         GLOBAL.ANSWER[2]="A3"
         GLOBAL.NOTE_NUMBER=0;
         GLOBAL.PAGE_NUMBER=0;
+        GLOBAL.NOTE[0]="作成テスト"
+
+    }
+    fun tap_btnWarpDisp02(view:View?){
+        val intent = Intent(this, Disp02::class.java)
+        startActivity(intent)
+    }
+
+    fun tap_btnWarpDisp07(view: View?){
+
         val intent= Intent(this,Disp07::class.java)
+        startActivity(intent)
+    }
+
+    fun tap_btnWarpDisp08(view:View?){
+        val intent= Intent(this,Disp08::class.java)
         startActivity(intent)
     }
 }
