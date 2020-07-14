@@ -13,7 +13,7 @@ class Disp11 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp11)
-        strQuestion.setText(GLOBAL.QUESTION[0])
+        strQuestion.setText(GLOBAL.PAGE_NUMBER.toString())
         strAnswer.setText(GLOBAL.ANSWER[0])
     }
 

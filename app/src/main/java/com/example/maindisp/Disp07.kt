@@ -60,8 +60,8 @@ class Disp07 : AppCompatActivity() {
     fun LoopNumber(i:Int){
         if(GLOBAL.PAGE_NUMBER==0&&i==-1){
             for(n in 119..0){
-                if(GLOBAL.NOTE_NUMBER+n!=null){
-                    GLOBAL.PAGE_NUMBER=n
+                if((GLOBAL.NOTE_NUMBER*120+n)!=null){
+                    GLOBAL.PAGE_NUMBER=10
                     break
                 }
             }
