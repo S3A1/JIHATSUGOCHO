@@ -3,6 +3,7 @@ package com.example.maindisp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import kotlinx.android.synthetic.main.activity_disp07.*
 
@@ -17,7 +18,7 @@ class Disp07 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp07)
-
+        txtAnswer.setVisibility(View.INVISIBLE)
         setQuestion()
     }
 
@@ -25,19 +26,20 @@ class Disp07 : AppCompatActivity() {
     fun tap_btnNext(view: View?){
         LoopNumber(1)
         setQuestion()
+        txtAnswer.setVisibility(View.INVISIBLE)
     }
 
     //前ボタンが押された場合
     fun tap_btnBack(view:View?){
         LoopNumber(-1)
         setQuestion()
+        txtAnswer.setVisibility(View.INVISIBLE)
     }
 
 
     fun setQuestion(){
         txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER])
         txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.PAGE_NUMBER])
-        txtNUM.setText(GLOBAL.PAGE_NUMBER.toString())
     }
 
     fun tap_btnChange(view : View?){
@@ -100,6 +102,22 @@ class Disp07 : AppCompatActivity() {
                 GLOBAL.PAGE_NUMBER-=1;
             }
         }
+    }
+
+    override fun onTouchEvent(event: MotionEvent):Boolean
+    {
+        when(event!!.action){
+            MotionEvent.ACTION_DOWN -> {
+                if(txtAnswer.getVisibility()==View.VISIBLE){
+                    txtAnswer.setVisibility(View.INVISIBLE)
+                }
+                else if(txtAnswer.getVisibility()==View.INVISIBLE){
+                    txtAnswer.setVisibility(View.VISIBLE)
+                }
+
+            }
+        }
+        return false//onTouchEventの終了
     }
 
 }
