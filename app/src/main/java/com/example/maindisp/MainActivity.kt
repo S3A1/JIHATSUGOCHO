@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
     val GLOBAL=MyApp.getInstance()
@@ -13,6 +14,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //insert test
+
+        list.setOnClickListener{tap_btnWarpDisp02(it)}
+    }
+    fun tap_btnWarpDisp02(view:View?){
+        val intent = Intent(this, Disp02::class.java)
+        startActivity(intent)
     }
 
     fun tap_btnWarpDisp07(view: View?){
