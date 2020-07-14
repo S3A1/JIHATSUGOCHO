@@ -59,10 +59,10 @@ class Disp07 : AppCompatActivity() {
     //このへんから
     fun LoopNumber(i:Int){
         if(GLOBAL.PAGE_NUMBER==0&&i==-1){
-            for(n in 119..0){
-                if(GLOBAL.NOTE_NUMBER+n!=null){
+            for(n in 0..119){
+                if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+n]==null){
                     GLOBAL.PAGE_NUMBER=n
-                    break
+                    break;
                 }
             }
         }
