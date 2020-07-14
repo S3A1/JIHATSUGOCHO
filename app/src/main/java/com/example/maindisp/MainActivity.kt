@@ -36,7 +36,9 @@ class MainActivity : AppCompatActivity() {
 
         list.setOnClickListener{tap_btnWarpDisp02(it)}
 
-        edit.setOnClickListener { tap_btnWarpEdit(it) }
+        edit.setOnClickListener {
+            val text = list.text.toString()
+            tap_btnWarpEdit(it,text) }
     }
     fun tap_btnWarpDisp02(view:View?){
         val intent = Intent(this, Disp02::class.java)
@@ -56,8 +58,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun tap_btnWarpEdit(view:View?) {
+    fun tap_btnWarpEdit(view:View? ,text:String?) {
+
         val intent = Intent(this,Disp21::class.java)
+        intent.putExtra("LIST_NAME",text)
         startActivity(intent)
     }
 }

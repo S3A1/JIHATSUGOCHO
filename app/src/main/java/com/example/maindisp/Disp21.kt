@@ -5,6 +5,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_disp21.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class Disp21 : AppCompatActivity() {
 
@@ -17,6 +18,9 @@ class Disp21 : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
-    }
 
+        edit.setOnClickListener {
+
+        }
+    }
 }
