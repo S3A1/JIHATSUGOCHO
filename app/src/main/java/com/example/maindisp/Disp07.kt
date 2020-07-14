@@ -23,19 +23,13 @@ class Disp07 : AppCompatActivity() {
 
     //次ボタン押された場合
     fun tap_btnNext(view: View?){
-        GLOBAL.PAGE_NUMBER+=1
+        LoopNumber(1)
         setQuestion()
     }
 
     //前ボタンが押された場合
     fun tap_btnBack(view:View?){
-        //ページが0番目であれば配列最後に推移
-        if(GLOBAL.PAGE_NUMBER==0){
-            LoopNumber(-1)
-        }
-        else {
-            GLOBAL.PAGE_NUMBER -= 1
-        }
+        LoopNumber(-1)
         setQuestion()
     }
 
@@ -58,12 +52,25 @@ class Disp07 : AppCompatActivity() {
 
     //このへんから
     fun LoopNumber(i:Int){
-        if(GLOBAL.PAGE_NUMBER==0&&i==-1){
-            for(n in 0..119){
-                if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+n]==null){
-                    GLOBAL.PAGE_NUMBER=n
-                    break;
+        if(i==1){
+            if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER+1]==null){
+                GLOBAL.PAGE_NUMBER=0
+            }
+            else{
+                GLOBAL.PAGE_NUMBER+=1;
+            }
+        }
+        if(i==-1) {
+            if (GLOBAL.PAGE_NUMBER == 0) {
+                for (n in 0..119) {
+                    if (GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + n] == null) {
+                        GLOBAL.PAGE_NUMBER = n - 1
+                        break;
+                    }
                 }
+            }
+            else{
+                GLOBAL.PAGE_NUMBER-=1;
             }
         }
     }
