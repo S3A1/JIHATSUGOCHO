@@ -23,18 +23,26 @@ class Disp07 : AppCompatActivity() {
 
     //次ボタンが押された場合
     fun tap_btnNext(view: View?){
+        GLOBAL.PAGE_NUMBER+=1
         setQuestion()
     }
 
     //前ボタンが押された場合
     fun tap_btnBack(view:View?){
+        //ページが0番目であれば配列最後に推移
+        if(GLOBAL.PAGE_NUMBER==0){
+            LoopNumber(-1)
+        }
+        else {
+            GLOBAL.PAGE_NUMBER -= 1
+        }
         setQuestion()
     }
 
 
     fun setQuestion(){
-        txtQuestion.setText(GLOBAL.QUESTION[0])
-        txtAnswer.setText(GLOBAL.ANSWER[0])
+        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER])
+        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.PAGE_NUMBER])
     }
 
     fun tap_btnChange(view : View?){
@@ -45,6 +53,19 @@ class Disp07 : AppCompatActivity() {
     fun tap_btnHome(view : View?){
         val intent= Intent(this,MainActivity::class.java)
         startActivity(intent)
+    }
+
+
+    //このへんから
+    fun LoopNumber(i:Int){
+        if(GLOBAL.PAGE_NUMBER==0&&i==-1){
+            for(n in 119..0){
+                if(GLOBAL.NOTE_NUMBER+n!=null){
+                    GLOBAL.PAGE_NUMBER=n
+                    break
+                }
+            }
+        }
     }
 
 }

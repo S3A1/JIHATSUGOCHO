@@ -18,10 +18,8 @@ class Disp11 : AppCompatActivity() {
     }
 
     fun tap_btnDone(view : View?){
-
         GLOBAL.QUESTION[0]=strQuestion.text.toString()
         GLOBAL.ANSWER[0]=strAnswer.text.toString()
-
         val intent= Intent(this,Disp07::class.java)
         startActivity(intent)
     }
