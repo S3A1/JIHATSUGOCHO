@@ -21,7 +21,7 @@ class Disp07 : AppCompatActivity() {
         setQuestion()
     }
 
-    //次ボタンが押された場合
+    //次ボタン押された場合
     fun tap_btnNext(view: View?){
         GLOBAL.PAGE_NUMBER+=1
         setQuestion()
