@@ -51,6 +51,7 @@ class Disp07 : AppCompatActivity() {
     }
 
     fun tap_btnDelete(view : View?){
+        //ここに削除のダイアログを表示するようにする　※担当吉田に代わります
         DeleteQuestion()
         setQuestion();
     }
