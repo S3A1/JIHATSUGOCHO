@@ -51,7 +51,7 @@ class Disp07 : AppCompatActivity() {
 
 
     //このへんから
-    fun LoopNumber(i:Int){
+    fun LoopNumber(i:Int){//引数　+1で次の番号へ -1で前の番号へ
         if(i==1){
             if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER+1]==null){
                 GLOBAL.PAGE_NUMBER=0
