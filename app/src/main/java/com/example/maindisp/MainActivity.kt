@@ -12,8 +12,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        GLOBAL.QUESTION[0]="TEST_Q"
-        GLOBAL.ANSWER[0]="TEST_A"
+        GLOBAL.QUESTION[0]="TEST_QUESTION"
+        GLOBAL.ANSWER[0]="TEST_ANSWER"
     }
 
     fun tap_btnWarpDisp07(view:View?){
