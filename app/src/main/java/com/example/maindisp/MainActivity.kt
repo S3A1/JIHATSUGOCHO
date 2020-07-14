@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         GLOBAL.ANSWER[0]="A1"
         GLOBAL.QUESTION[1]="Q2"
         GLOBAL.ANSWER[1]="A2"
+        GLOBAL.QUESTION[2]="Q3"
+        GLOBAL.ANSWER[2]="A3"
+        GLOBAL.NOTE_NUMBER=0;
+        GLOBAL.PAGE_NUMBER=0;
         val intent= Intent(this,Disp07::class.java)
         startActivity(intent)
     }
