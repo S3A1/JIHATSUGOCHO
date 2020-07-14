@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         //insert test
 
         list.setOnClickListener{tap_btnWarpDisp02(it)}
+
+        edit.setOnClickListener { tap_btnWarpEdit(it) }
     }
     fun tap_btnWarpDisp02(view:View?){
         val intent = Intent(this, Disp02::class.java)
@@ -51,6 +53,11 @@ class MainActivity : AppCompatActivity() {
         GLOBAL.NOTE_NUMBER=0;
         GLOBAL.PAGE_NUMBER=0;
         val intent= Intent(this,Disp07::class.java)
+        startActivity(intent)
+    }
+
+    fun tap_btnWarpEdit(view:View?) {
+        val intent = Intent(this,Disp21::class.java)
         startActivity(intent)
     }
 }

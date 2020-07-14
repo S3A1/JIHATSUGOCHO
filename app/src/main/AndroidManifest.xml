@@ -11,6 +11,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
+                android:name=".Disp21"
+                android:label="@string/title_activity_disp21"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
                 android:name=".Disp02"
                 android:label="@string/title_activity_disp02"
                 android:theme="@style/AppTheme.NoActionBar">
