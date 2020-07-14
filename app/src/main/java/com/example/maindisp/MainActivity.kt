@@ -1,9 +1,11 @@
 package com.example.maindisp
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,6 +14,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        fab.setOnClickListener { view ->
+            //testText.setText("ふろーちんぐおされたわぁ")
+            val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+            // ダイアログ用にクラスを作っているのでそこに設定している
+            dialog.dialogTitle = "テキスト入力"
+            dialog.dialogMessage = "文字を入力してください！"
+            dialog.dialogTextData = "教科名"//testText.text.toString()
+            dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
+                // OK選択時の処理
+                val textData = dialog.dialogTextData
+                testText.text = textData
+            }
+            dialog.isCancelButton = true
+            // ダイアログ表示
+            dialog.openDialog(supportFragmentManager)
+        }
 
         //insert test
 
