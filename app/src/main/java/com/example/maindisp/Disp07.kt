@@ -18,8 +18,9 @@ class Disp07 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp07)
+        txtListName.setText(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         txtAnswer.setVisibility(View.INVISIBLE)
-        setQuestion()
+        setQuestion();
     }
 
     //次ボタン押された場合
@@ -48,8 +49,7 @@ class Disp07 : AppCompatActivity() {
     }
 
     fun tap_btnHome(view : View?){
-        val intent= Intent(this,MainActivity::class.java)
-        startActivity(intent)
+        finish()
     }
 
     fun tap_btnDelete(view : View?){
@@ -79,7 +79,6 @@ class Disp07 : AppCompatActivity() {
     }
 
 
-    //このへんから
     fun LoopNumber(i:Int){//引数　+1で次の番号へ -1で前の番号へ
         if(i==1){
             if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER+1]==null){
@@ -104,6 +103,7 @@ class Disp07 : AppCompatActivity() {
         }
     }
 
+    //回答表示非表示の切り替え
     override fun onTouchEvent(event: MotionEvent):Boolean
     {
         when(event!!.action){
@@ -114,7 +114,6 @@ class Disp07 : AppCompatActivity() {
                 else if(txtAnswer.getVisibility()==View.INVISIBLE){
                     txtAnswer.setVisibility(View.VISIBLE)
                 }
-
             }
         }
         return false//onTouchEventの終了
