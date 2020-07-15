@@ -29,7 +29,6 @@ class Disp08 : AppCompatActivity() {
     }
 
     fun tap_btnCancel(view:View?){
-        val intent= Intent(this,MainActivity::class.java)//本来はDisp02に推移
-        startActivity(intent)
+        finish()
     }
 }

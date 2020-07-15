@@ -16,4 +16,8 @@
     <string name="btnAdd">追加</string>
     <string name="btnWarpDisp08">Disp08へ</string>
     <string name="title_activity_disp21">Disp21</string>
+    <string name="btnDisp">解答を表示</string>
+    <string name="btnOK">正解</string>
+    <string name="btnNG">不正解</string>
+    <string name="btnWarpDisp18">Disp18へ</string>
 </resources>

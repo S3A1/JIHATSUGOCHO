@@ -41,12 +41,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun tap_btnWarpDisp07(view: View?){
+        GLOBAL.PAGE_NUMBER=0
         val intent= Intent(this,Disp07::class.java)
         startActivity(intent)
     }
 
     fun tap_btnWarpDisp08(view :View?){
         val intent= Intent(this,Disp08::class.java)
+        startActivity(intent)
+    }
+    fun tap_btnWarpDisp18(view :View?){
+        val intent= Intent(this,Disp18::class.java)
         startActivity(intent)
     }
 }

@@ -14,7 +14,6 @@ class MyApp :Application(){
 
         val GLOBAL=MyApp.getInstance()
 
-
         GLOBAL.QUESTION[0]="Q1"
         GLOBAL.ANSWER[0]="A1"
         GLOBAL.QUESTION[1]="Q2"

@@ -10,6 +10,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".Disp20">
+        </activity>
+        <activity android:name=".Disp18">
+        </activity>
         <activity android:name=".Disp08">
         </activity>
         <activity
