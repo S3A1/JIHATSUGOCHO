@@ -25,7 +25,7 @@ class MyApp :Application(){
         GLOBAL.PAGE_NUMBER=0;
         GLOBAL.NOTE[0]="作成テスト"
 
-        //ここにファイルから読み込む処理を記述
+        //ここにファイルから読み込む処理を記述する
 
     }
 
