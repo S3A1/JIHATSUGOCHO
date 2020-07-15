@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         GLOBAL.PAGE_NUMBER=0
 
         edit.setOnClickListener {
-            val text = list.text.toString()
             tap_btnWarpDisp21(it)
         }
 
@@ -57,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     fun tap_btnWarpDisp21(view:View?) {
         val intent = Intent(this, Disp21::class.java)
+        startActivity(intent)
     }
     fun tap_btnWarpDisp08(view :View?){
         val intent= Intent(this,Disp08::class.java)
