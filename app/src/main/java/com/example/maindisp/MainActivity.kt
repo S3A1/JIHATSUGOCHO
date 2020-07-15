@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun tap_btnWarpDisp21(view:View?) {
-        val intent = Intent(this,Disp21::class.java)
+        val intent = Intent(this, Disp21::class.java)
+    }
     fun tap_btnWarpDisp08(view :View?){
         val intent= Intent(this,Disp08::class.java)
         startActivity(intent)
