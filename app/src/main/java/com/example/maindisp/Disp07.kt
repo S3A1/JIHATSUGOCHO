@@ -1,11 +1,13 @@
 package com.example.maindisp
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import kotlinx.android.synthetic.main.activity_disp07.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class Disp07 : AppCompatActivity() {
 
@@ -54,8 +56,18 @@ class Disp07 : AppCompatActivity() {
 
     fun tap_btnDelete(view : View?){
         //ここに削除のダイアログを表示するようにする　※担当吉田に代わります
-        DeleteQuestion()
-        setQuestion();
+        val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+        // ダイアログ用にクラスを作っているのでそこに設定している
+        dialog.dialogTitle = "削除"
+        dialog.dialogMessage = "本当に削除しますか？"
+        dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
+            // OK選択時の処理
+            DeleteQuestion()
+            setQuestion()
+        }
+        dialog.isCancelButton = true
+        // ダイアログ表示
+        dialog.openDialog(supportFragmentManager)
     }
 
     fun DeleteQuestion(){
