@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             dialog.openDialog(supportFragmentManager)
         }
         list.setOnClickListener{tap_btnWarpDisp02(it)}
-
+        GLOBAL.PAGE_NUMBER=0
 
     }
     fun tap_btnWarpDisp02(view:View?){
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun tap_btnWarpDisp07(view: View?){
-        GLOBAL.PAGE_NUMBER=0
+
         val intent= Intent(this,Disp07::class.java)
         startActivity(intent)
     }

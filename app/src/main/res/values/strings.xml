@@ -20,4 +20,5 @@
     <string name="btnOK">正解</string>
     <string name="btnNG">不正解</string>
     <string name="btnWarpDisp18">Disp18へ</string>
+    <string name="btnTestEnd">テストを終了</string>
 </resources>
