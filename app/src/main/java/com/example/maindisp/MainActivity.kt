@@ -33,15 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
         list.setOnClickListener{tap_btnWarpDisp02(it)}
 
-        GLOBAL.QUESTION[0]="Q1"
-        GLOBAL.ANSWER[0]="A1"
-        GLOBAL.QUESTION[1]="Q2"
-        GLOBAL.ANSWER[1]="A2"
-        GLOBAL.QUESTION[2]="Q3"
-        GLOBAL.ANSWER[2]="A3"
-        GLOBAL.NOTE_NUMBER=0;
-        GLOBAL.PAGE_NUMBER=0;
-        GLOBAL.NOTE[0]="作成テスト"
+
     }
     fun tap_btnWarpDisp02(view:View?){
         val intent = Intent(this, Disp02::class.java)
