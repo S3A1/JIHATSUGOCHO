@@ -8,8 +8,6 @@ class MyApp :Application(){
     var PAGE_NUMBER:Int=0//ページ番号管理用 0-119
     var NOTE_NUMBER:Int=0//ノート番号管理用 0-19
 
-
-
     companion object {
         private var instance : MyApp? = null
         fun  getInstance(): MyApp {
