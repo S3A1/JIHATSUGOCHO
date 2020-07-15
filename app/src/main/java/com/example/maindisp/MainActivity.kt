@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        list.text = GLOBAL.NOTE[0]
+
+
         fab.setOnClickListener { view ->
             //testText.setText("ふろーちんぐおされたわぁ")
             val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
@@ -38,7 +42,9 @@ class MainActivity : AppCompatActivity() {
 
         edit.setOnClickListener {
             val text = list.text.toString()
-            tap_btnWarpEdit(it,text) }
+            tap_btnWarpDisp21(it)
+        }
+
     }
     fun tap_btnWarpDisp02(view:View?){
         val intent = Intent(this, Disp02::class.java)
@@ -58,10 +64,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun tap_btnWarpEdit(view:View? ,text:String?) {
-
+    fun tap_btnWarpDisp21(view:View?) {
         val intent = Intent(this,Disp21::class.java)
-        intent.putExtra("LIST_NAME",text)
         startActivity(intent)
     }
 }
