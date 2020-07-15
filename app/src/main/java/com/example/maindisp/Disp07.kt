@@ -32,6 +32,7 @@ class Disp07 : AppCompatActivity() {
         //ページが0番目であれば配列最後に推移
         if(GLOBAL.PAGE_NUMBER==0){
             LoopNumber(-1)
+            GLOBAL.PAGE_NUMBER = 1
         }
         else {
             GLOBAL.PAGE_NUMBER -= 1
