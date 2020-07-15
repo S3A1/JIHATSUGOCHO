@@ -105,6 +105,7 @@ class Disp07 : AppCompatActivity() {
         }
     }
 
+    //回答表示非表示の切り替え
     override fun onTouchEvent(event: MotionEvent):Boolean
     {
         when(event!!.action){
@@ -115,7 +116,6 @@ class Disp07 : AppCompatActivity() {
                 else if(txtAnswer.getVisibility()==View.INVISIBLE){
                     txtAnswer.setVisibility(View.VISIBLE)
                 }
-
             }
         }
         return false//onTouchEventの終了

@@ -8,10 +8,12 @@ class MyApp :Application(){
     var PAGE_NUMBER:Int=0//ページ番号管理用 0-119
     var NOTE_NUMBER:Int=0//ノート番号管理用 0-19
 
-    val GLOBAL=MyApp.getInstance()
+    override fun onCreate() {
 
-   /* override fun onCreate() {
         super.onCreate()
+
+        val GLOBAL=MyApp.getInstance()
+
 
         GLOBAL.QUESTION[0]="Q1"
         GLOBAL.ANSWER[0]="A1"
@@ -23,7 +25,9 @@ class MyApp :Application(){
         GLOBAL.PAGE_NUMBER=0;
         GLOBAL.NOTE[0]="作成テスト"
 
-    }*/
+        //ここにファイルから読み込む処理を記述
+
+    }
 
 
     companion object {
