@@ -1,5 +1,9 @@
 package com.example.maindisp
 import android.app.Application
+import java.io.File
+import java.io.FileNotFoundException
+import java.util.*
+
 class MyApp :Application(){
 
     var QUESTION=Array<String?>(2400,{null})//問題文
@@ -24,9 +28,38 @@ class MyApp :Application(){
         GLOBAL.PAGE_NUMBER=0;
         GLOBAL.NOTE[0]="作成テスト"
 
-        //ここにファイルから読み込む処理を記述する
+        //ここにファイルから読み込む処理を記述
 
+        READFILE()
     }
+
+    fun READFILE(){
+
+        //ここから
+
+        val GLOBAL=MyApp.getInstance()
+        try{
+            var i:Int=0
+            val fileName = "$filesDir" + "/元素記号.csv"
+            val file=File(fileName)
+            val scan=Scanner(file)
+            scan.useDelimiter(",|\n")
+            while(scan.hasNext()){
+                if(i%2==0){
+                    GLOBAL.QUESTION[i/2]=scan.next()
+                }
+                else {
+                    GLOBAL.ANSWER[i / 2] = scan.next()
+                }
+                i+=1
+            }
+
+        }catch(e: FileNotFoundException){
+            GLOBAL.QUESTION[0]="READ ERROR"
+        }
+    }
+
+
 
 
     companion object {
