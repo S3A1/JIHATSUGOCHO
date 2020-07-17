@@ -34,28 +34,48 @@ class MyApp :Application(){
     }
 
     fun READFILE(){
-
-        //ここから
-
         val GLOBAL=MyApp.getInstance()
+
         try{
-            var i:Int=0
-            val fileName = "$filesDir" + "/元素記号.csv"
-            val file=File(fileName)
-            val scan=Scanner(file)
-            scan.useDelimiter(",|\n")
-            while(scan.hasNext()){
-                if(i%2==0){
-                    GLOBAL.QUESTION[i/2]=scan.next()
+            var list=File("$filesDir").list()
+            var str:String=""
+
+            for(i in list.indices){
+                var EX=getExtention(list[i])
+                //拡張子がcsvのタイトルを取得し、ノートに追加
+                if(EX=="csv"){
+                    AddNoteName(hideExtention(list[i]))
                 }
-                else {
-                    GLOBAL.ANSWER[i / 2] = scan.next()
-                }
-                i+=1
             }
 
-        }catch(e: FileNotFoundException){
-            GLOBAL.QUESTION[0]="READ ERROR"
+        }catch(e:Exception){
+
+        }
+    }
+
+    fun getExtention(str:String):String{
+        var point:Int=str.lastIndexOf(".")
+        if(point!=-1){
+            return str.substring(point+1)
+        }
+        return ""
+    }
+
+    fun hideExtention(str:String):String{
+        var point:Int=str.lastIndexOf(".")
+        if(point!=-1){
+            return str.substring(0,point)
+        }
+        return ""
+    }
+
+    fun AddNoteName(str:String){
+        val GLOBAL=MyApp.getInstance()
+        for(i in 0..19){
+            if(GLOBAL.NOTE[i]==null){
+                GLOBAL.NOTE[i]=str
+                break
+            }
         }
     }
 
