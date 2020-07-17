@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.io.File
+import java.io.FileNotFoundException
 
 class MainActivity : AppCompatActivity() {
     val GLOBAL=MyApp.getInstance()
@@ -14,8 +16,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        GLOBAL.QUESTION[0]="TEST_QUESTION"
-        GLOBAL.ANSWER[0]="TEST_ANSWER"
+
+
+        list.text = GLOBAL.NOTE[0]
+
+
         fab.setOnClickListener { view ->
             //testText.setText("ふろーちんぐおされたわぁ")
             val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
@@ -33,16 +38,12 @@ class MainActivity : AppCompatActivity() {
             dialog.openDialog(supportFragmentManager)
         }
         list.setOnClickListener{tap_btnWarpDisp02(it)}
+        GLOBAL.PAGE_NUMBER=0
 
-        GLOBAL.QUESTION[0]="Q1"
-        GLOBAL.ANSWER[0]="A1"
-        GLOBAL.QUESTION[1]="Q2"
-        GLOBAL.ANSWER[1]="A2"
-        GLOBAL.QUESTION[2]="Q3"
-        GLOBAL.ANSWER[2]="A3"
-        GLOBAL.NOTE_NUMBER=0;
-        GLOBAL.PAGE_NUMBER=0;
-        GLOBAL.NOTE[0]="作成テスト"
+        edit.setOnClickListener {
+            tap_btnWarpDisp21(it)
+        }
+
     }
     fun tap_btnWarpDisp02(view:View?){
         val intent = Intent(this, Disp02::class.java)
@@ -54,8 +55,33 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun tap_btnWarpDisp21(view:View?) {
+        val intent = Intent(this, Disp21::class.java)
+        startActivity(intent)
+    }
     fun tap_btnWarpDisp08(view :View?){
         val intent= Intent(this,Disp08::class.java)
         startActivity(intent)
+    }
+    fun tap_btnWarpDisp18(view :View?){
+        val intent= Intent(this,Disp18::class.java)
+        startActivity(intent)
+    }
+    fun tap_btnFileTest(view : View?){
+        val fileName1 = "$filesDir" + "/果物の漢字.csv"
+        val fileName2 = "$filesDir" + "/元素記号.csv"
+
+        val text1     = "林檎,りんご\n葡萄,ぶどう\n桜桃,さくらんぼ\n枇杷,びわ\n檸檬,れもん"
+        val text2     = "1:H,水素\n2:He,ヘリウム\n3:Li,リチウム\n4:Be,ベリリウム\n5:B,ホウ素\n6:C,炭素\n7:N,窒素\n8:O,酸素\n9:F,フッ素\n10:Ne,ネオン"
+
+        try{
+            val writeFile1 = File(fileName1)
+            writeFile1.writeText(text1)
+            val  writeFile2= File(fileName2)
+            writeFile2.writeText(text2)
+
+        } catch (e: FileNotFoundException){
+            println(e)
+        }
     }
 }

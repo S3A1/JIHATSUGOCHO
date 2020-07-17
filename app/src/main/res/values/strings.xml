@@ -11,4 +11,14 @@
     <string name="btnDone">変更</string>
     <string name="btnWarpDisp07">Disp07へ</string>
     <string name="btnHome">リストへ</string>
+    <string name="title_activity_disp02">Disp02</string>
+    <string name="btnDelete">削除</string>
+    <string name="btnAdd">追加</string>
+    <string name="btnWarpDisp08">Disp08へ</string>
+    <string name="title_activity_disp21">Disp21</string>
+    <string name="btnDisp">解答を表示</string>
+    <string name="btnOK">正解</string>
+    <string name="btnNG">不正解</string>
+    <string name="btnWarpDisp18">Disp18へ</string>
+    <string name="btnTestEnd">テストを終了</string>
 </resources>
