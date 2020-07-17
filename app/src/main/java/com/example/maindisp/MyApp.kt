@@ -53,6 +53,7 @@ class MyApp :Application(){
         }
     }
 
+    //引数:ファイル名 戻り値:拡張子（ドット含まず）
     fun getExtention(str:String):String{
         var point:Int=str.lastIndexOf(".")
         if(point!=-1){
@@ -61,6 +62,7 @@ class MyApp :Application(){
         return ""
     }
 
+    //引数:ファイル名 戻り値:ファイル名（拡張子含まず）
     fun hideExtention(str:String):String{
         var point:Int=str.lastIndexOf(".")
         if(point!=-1){
@@ -69,6 +71,7 @@ class MyApp :Application(){
         return ""
     }
 
+    //引数:ファイル名 ノート名最後にファイルを追加します
     fun AddNoteName(str:String){
         val GLOBAL=MyApp.getInstance()
         for(i in 0..19){
