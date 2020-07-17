@@ -84,4 +84,8 @@ class MainActivity : AppCompatActivity() {
             println(e)
         }
     }
+    fun tap_btnTEST(view : View?){
+        val intent= Intent(this,Disp_TEST::class.java)
+        startActivity(intent)
+    }
 }

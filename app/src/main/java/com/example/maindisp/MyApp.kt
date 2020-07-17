@@ -6,11 +6,12 @@ import java.util.*
 
 class MyApp :Application(){
 
-    var QUESTION=Array<String?>(2400,{null})
-    var ANSWER=Array<String?>(2400,{null})
-    var NOTE=Array<String?>(20,{null})
 
-
+    var QUESTION=Array<String?>(2400,{null})//問題文
+    var ANSWER=Array<String?>(2400,{null})//回答文
+    var NOTE=Array<String?>(20,{null})//ノートのタイトル
+    var PAGE_NUMBER:Int=0//ページ番号管理用 0-119
+    var NOTE_NUMBER:Int=0//ノート番号管理用 0-19
 
     override fun onCreate() {
 
@@ -34,8 +35,6 @@ class MyApp :Application(){
     }
 
     fun READFILE(){
-        val GLOBAL=MyApp.getInstance()
-
         try{
             var list=File("$filesDir").list()
             var str:String=""
@@ -45,6 +44,7 @@ class MyApp :Application(){
                 //拡張子がcsvのタイトルを取得し、ノートに追加
                 if(EX=="csv"){
                     AddNoteName(hideExtention(list[i]))
+                    getQuestion(list[i])
                 }
             }
 
@@ -52,6 +52,25 @@ class MyApp :Application(){
 
         }
     }
+
+    fun getQuestion(f_name:String){
+        val GLOBAL=MyApp.getInstance()
+
+        try{
+            val file=File("$filesDir/"+f_name)
+            val scan=Scanner(file)
+            scan.useDelimiter(",|\n")
+            var i:Int=0
+            while(scan.hasNext()){
+                GLOBAL.QUESTION[i]=scan.next()
+                GLOBAL.ANSWER[i]=scan.next()
+                i+=1
+            }
+        }catch(e:Exception){
+
+        }
+    }
+
 
     //引数:ファイル名 戻り値:拡張子（ドット含まず）
     fun getExtention(str:String):String{
