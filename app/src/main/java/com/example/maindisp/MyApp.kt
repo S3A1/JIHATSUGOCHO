@@ -55,7 +55,6 @@ class MyApp :Application(){
 
     fun getQuestion(f_name:String){
         val GLOBAL=MyApp.getInstance()
-
         try{
             val file=File("$filesDir/"+f_name)
             val scan=Scanner(file)
