@@ -13,14 +13,14 @@ class MyApp :Application(){
     var PAGE_NUMBER:Int=0//ページ番号管理用 0-119
     var NOTE_NUMBER:Int=0//ノート番号管理用 0-19
 
+
+    //開始時処理
     override fun onCreate() {
-
         super.onCreate()
-
         val GLOBAL=MyApp.getInstance()
-
         READFILE()
     }
+
 
     fun READFILE(){
         val GLOBAL=MyApp.getInstance()
@@ -49,7 +49,7 @@ class MyApp :Application(){
     fun getQuestion(f_name:String?,n:Int){
         val GLOBAL=MyApp.getInstance()
         try{
-            val file=File("$filesDir/"+f_name+".csv")
+            val file=File("$filesDir/",f_name+".csv")
             val scan=Scanner(file)
             scan.useDelimiter(",|\n")
             var i:Int=0

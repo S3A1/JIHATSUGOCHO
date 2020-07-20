@@ -48,11 +48,10 @@ class Disp07 : AppCompatActivity() {
     fun tap_btnChange(view: View?) {
         val intent = Intent(this, Disp11::class.java)
         startActivity(intent)
+        finish()
     }
 
     fun tap_btnHome(view: View?) {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
         finish()
     }
 

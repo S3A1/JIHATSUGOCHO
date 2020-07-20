@@ -20,11 +20,13 @@ class Disp11 : AppCompatActivity() {
     fun tap_btnDone(view : View?){
         GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=strQuestion.text.toString()
         GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=strAnswer.text.toString()
-        val intent= Intent(this,Disp07::class.java)
+        val intent = Intent(this, Disp07::class.java)
         startActivity(intent)
+        finish()
     }
     fun tap_btnCancel(view : View?){
-        val intent= Intent(this,Disp07::class.java)
+        val intent = Intent(this, Disp07::class.java)
         startActivity(intent)
+        finish()
     }
 }

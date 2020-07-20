@@ -1,5 +1,6 @@
 package com.example.maindisp
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
 
         fab.setOnClickListener { view ->
-            //testText.setText("ふろーちんぐおされたわぁ")
             val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
             // ダイアログ用にクラスを作っているのでそこに設定している
             dialog.dialogTitle = "テキスト入力"
@@ -45,6 +45,43 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    //終了時処理
+    override fun onDestroy(){
+        super.onDestroy()
+        DataSave()
+    }
+
+    fun DataSave(){
+        try {
+            for(i in 0..19){
+                if(GLOBAL.NOTE[i]!=null){
+                    try{
+                        val file=File("$filesDir/" +GLOBAL.NOTE[i] +".csv")
+                        var str=CreateCSV()
+                        file.writeText(CreateCSV())
+                    }catch(e:Exception){
+
+                    }
+                }
+            }
+        }catch(e:Exception){
+
+        }
+
+    }
+
+    fun CreateCSV():String{
+        var strBuffer:String=""
+        //保存データを作成
+        for(n in 0..119){
+            if(GLOBAL.QUESTION[n]!=null){
+                strBuffer+=GLOBAL.QUESTION[n]+","+GLOBAL.ANSWER[n]+"\n"
+            }
+        }
+        return strBuffer
+    }
+
     fun tap_btnWarpDisp02(view:View?){
         val intent = Intent(this, Disp02::class.java)
         startActivity(intent)
