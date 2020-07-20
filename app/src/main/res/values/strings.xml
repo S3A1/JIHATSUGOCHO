@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MainDisp</string>
+    <string name="app_name">自発語帳</string>
     <string name="txtQuestion">問題</string>
     <string name="txtAnswer">解答</string>
     <string name="btnChange">編集</string>
