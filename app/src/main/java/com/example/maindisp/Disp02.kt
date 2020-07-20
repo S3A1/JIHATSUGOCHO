@@ -1,6 +1,8 @@
 package com.example.maindisp
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +24,12 @@ class Disp02 : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+    }
+
+    fun tap_btnList(view : View?){
+        val intent= Intent(this,Disp07::class.java)
+        startActivity(intent)
     }
 
 
