@@ -32,10 +32,12 @@ class Disp18 : AppCompatActivity() {
             GLOBAL.PAGE_NUMBER+=1
             val intent= Intent(this,Disp18::class.java)
             startActivity(intent)
+            finish()
         }
         else{
             val intent= Intent(this,Disp22::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
@@ -44,16 +46,19 @@ class Disp18 : AppCompatActivity() {
             GLOBAL.PAGE_NUMBER+=1
             val intent= Intent(this,Disp18::class.java)
             startActivity(intent)
+            finish()
         }
         else {
             val intent = Intent(this, Disp22::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
     fun tap_btnTestEnd(view : View?){
         val intent= Intent(this,Disp22::class.java)
         startActivity(intent)
+        finish()
     }
 
     fun setQuestion(){

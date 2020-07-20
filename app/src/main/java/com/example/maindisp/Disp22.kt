@@ -15,5 +15,6 @@ class Disp22 : AppCompatActivity() {
     fun tap_btnHome(view: View?){
         val intent= Intent(this,MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

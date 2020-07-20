@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
     fun tap_btnWarpDisp18(view :View?){
+        GLOBAL.PAGE_NUMBER=0
         val intent= Intent(this,Disp18::class.java)
         startActivity(intent)
     }
@@ -79,13 +80,8 @@ class MainActivity : AppCompatActivity() {
             writeFile1.writeText(text1)
             val  writeFile2= File(fileName2)
             writeFile2.writeText(text2)
-
         } catch (e: FileNotFoundException){
             println(e)
         }
-    }
-    fun tap_btnTEST(view : View?){
-        val intent= Intent(this,Disp_TEST::class.java)
-        startActivity(intent)
     }
 }

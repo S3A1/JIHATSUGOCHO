@@ -19,22 +19,11 @@ class MyApp :Application(){
 
         val GLOBAL=MyApp.getInstance()
 
-        GLOBAL.QUESTION[0]="Q1"
-        GLOBAL.ANSWER[0]="A1"
-        GLOBAL.QUESTION[1]="Q2"
-        GLOBAL.ANSWER[1]="A2"
-        GLOBAL.QUESTION[2]="Q3"
-        GLOBAL.ANSWER[2]="A3"
-        GLOBAL.NOTE_NUMBER=0;
-        GLOBAL.PAGE_NUMBER=0;
-        GLOBAL.NOTE[0]="作成テスト"
-
-        //ここにファイルから読み込む処理を記述
-
         READFILE()
     }
 
     fun READFILE(){
+        val GLOBAL=MyApp.getInstance()
         try{
             var list=File("$filesDir").list()
             var str:String=""
@@ -44,7 +33,11 @@ class MyApp :Application(){
                 //拡張子がcsvのタイトルを取得し、ノートに追加
                 if(EX=="csv"){
                     AddNoteName(hideExtention(list[i]))
-                    getQuestion(list[i])
+                }
+            }
+            for(i in GLOBAL.NOTE.indices){
+                if(GLOBAL.NOTE[i]!=null){
+                    getQuestion(GLOBAL.NOTE[i],i)
                 }
             }
 
@@ -53,16 +46,16 @@ class MyApp :Application(){
         }
     }
 
-    fun getQuestion(f_name:String){
+    fun getQuestion(f_name:String?,n:Int){
         val GLOBAL=MyApp.getInstance()
         try{
-            val file=File("$filesDir/"+f_name)
+            val file=File("$filesDir/"+f_name+".csv")
             val scan=Scanner(file)
             scan.useDelimiter(",|\n")
             var i:Int=0
             while(scan.hasNext()){
-                GLOBAL.QUESTION[i]=scan.next()
-                GLOBAL.ANSWER[i]=scan.next()
+                GLOBAL.QUESTION[i+n*120]=scan.next()
+                GLOBAL.ANSWER[i+n*120]=scan.next()
                 i+=1
             }
         }catch(e:Exception){

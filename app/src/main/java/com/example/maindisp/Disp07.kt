@@ -51,11 +51,12 @@ class Disp07 : AppCompatActivity() {
     }
 
     fun tap_btnHome(view: View?) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
         finish()
     }
 
     fun tap_btnDelete(view: View?) {
-        //ここに削除のダイアログを表示するようにする　※担当吉田に代わります
         val dialog: ClsTextInputDialog = ClsTextInputDialog(this)
         // ダイアログ用にクラスを作っているのでそこに設定している
         dialog.dialogTitle = "削除"
