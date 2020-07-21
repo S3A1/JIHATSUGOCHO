@@ -134,6 +134,11 @@ class MainActivity : AppCompatActivity() {
         val intent= Intent(this,Disp18::class.java)
         startActivity(intent)
     }
+    fun tap_btnNotifiSetting(view : View?){
+        val intent = Intent(this, Disp13::class.java)
+        startActivity(intent)
+    }
+
     fun tap_btnFileTest(view : View?){
         val fileName1 = "$filesDir" + "/果物の漢字.csv"
         val fileName2 = "$filesDir" + "/元素記号.csv"
