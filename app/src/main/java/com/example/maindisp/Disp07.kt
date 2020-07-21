@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class Disp07 : AppCompatActivity() {
 
-    val GLOBAL=MyApp.getInstance()
+    val GLOBAL = MyApp.getInstance()
 
     //この変数に問題と解答を設定する
     val Question:String="問題";
@@ -26,28 +26,29 @@ class Disp07 : AppCompatActivity() {
     }
 
     //次ボタン押された場合
-    fun tap_btnNext(view: View?){
+    fun tap_btnNext(view: View?) {
         LoopNumber(1)
         setQuestion()
         txtAnswer.setVisibility(View.INVISIBLE)
     }
 
     //前ボタンが押された場合
-    fun tap_btnBack(view:View?){
+    fun tap_btnBack(view: View?) {
         LoopNumber(-1)
         setQuestion()
         txtAnswer.setVisibility(View.INVISIBLE)
     }
 
 
-    fun setQuestion(){
-        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER])
-        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.PAGE_NUMBER])
+    fun setQuestion() {
+        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
+        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
     }
 
-    fun tap_btnChange(view : View?){
-        val intent= Intent(this,Disp11::class.java)
+    fun tap_btnChange(view: View?) {
+        val intent = Intent(this, Disp11::class.java)
         startActivity(intent)
+        finish()
     }
 
     fun tap_btnHome(view : View?){
@@ -72,32 +73,36 @@ class Disp07 : AppCompatActivity() {
 
     fun DeleteQuestion(){
         //削除対象が最終番であった場合は削除しポインタを一つ戻す
-        if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER+1]==null){
-            GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=null
-            GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=null
+        if (GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER + 1] == null) {
+            GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER] = null
+            GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER] = null
+            GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER] = -1
             GLOBAL.PAGE_NUMBER-=1
-        }
-        else {
+        } else {
             //削除対象から後の項番をひとつづつずらす
             for (i in GLOBAL.PAGE_NUMBER..118) {
-                GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + i] = GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
-                GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + i] = GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
+                GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + i] =
+                    GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
+                GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + i] =
+                    GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
+                GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + i] =
+                    GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
             }
         }
         //末尾にnullを追加
-        GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+119]=null
-        GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+119]=null
+        GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + 119] = null
+        GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + 119] = null
+        GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + 119] = -1
 
     }
 
 
-    fun LoopNumber(i:Int){//引数　+1で次の番号へ -1で前の番号へ
-        if(i==1){
-            if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER+1]==null){
-                GLOBAL.PAGE_NUMBER=0
-            }
-            else{
-                GLOBAL.PAGE_NUMBER+=1;
+    fun LoopNumber(i: Int) {//引数　+1で次の番号へ -1で前の番号へ
+        if (i == 1) {
+            if (GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER + 1] == null) {
+                GLOBAL.PAGE_NUMBER = 0
+            } else {
+                GLOBAL.PAGE_NUMBER += 1;
             }
         }
         if(i==-1) {
