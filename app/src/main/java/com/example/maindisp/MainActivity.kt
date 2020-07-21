@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
         val text1     = "林檎,りんご\n葡萄,ぶどう\n桜桃,さくらんぼ\n枇杷,びわ\n檸檬,れもん"
         val text2     = "1:H,水素\n2:He,ヘリウム\n3:Li,リチウム\n4:Be,ベリリウム\n5:B,ホウ素\n6:C,炭素\n7:N,窒素\n8:O,酸素\n9:F,フッ素\n10:Ne,ネオン"
-        val text3="宮城,仙台\n群馬,前橋\n栃木,宇都宮\n茨城,水戸\n"
+        val text3="宮城,仙台\n群馬,前橋\n栃木,宇都宮\n茨城,水戸\n福岡,福岡\n沖縄,那覇"
 
         try{
             val writeFile1 = File(fileName1)
