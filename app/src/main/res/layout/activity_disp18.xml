@@ -65,4 +65,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnTestEnd" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:onClick="tap_btnTestEnd"/>
+    <TextView
+            android:id="@+id/txtLast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp" android:text="前回 :" android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

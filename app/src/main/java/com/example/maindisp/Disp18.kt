@@ -18,6 +18,7 @@ class Disp18 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp18)
         setQuestion()
+        setLastLabel()
     }
 
     fun tap_btnDisp(view : View?){
@@ -28,37 +29,60 @@ class Disp18 : AppCompatActivity() {
     }
 
     fun tap_btnOK(view : View?){
-        if(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER+1]!=null){
+        GLOBAL.LAST[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=1
+        if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER+1]!=null){
             GLOBAL.PAGE_NUMBER+=1
             val intent= Intent(this,Disp18::class.java)
             startActivity(intent)
+            finish()
         }
         else{
             val intent= Intent(this,Disp22::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
     fun tap_btnNG(view : View?){
-        if(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER+1]!=null){
+        GLOBAL.LAST[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=0
+        if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER+1]!=null){
             GLOBAL.PAGE_NUMBER+=1
             val intent= Intent(this,Disp18::class.java)
             startActivity(intent)
+            finish()
         }
         else {
             val intent = Intent(this, Disp22::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
     fun tap_btnTestEnd(view : View?){
         val intent= Intent(this,Disp22::class.java)
         startActivity(intent)
+        finish()
     }
 
     fun setQuestion(){
-        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER])
-        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.PAGE_NUMBER])
+        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
+        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
+    }
+
+    fun setLastLabel() {
+        when(GLOBAL.LAST[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]){
+            -1 ->{
+                txtLast.setVisibility(View.INVISIBLE)
+            }
+            0 ->{
+                txtLast.setVisibility(View.VISIBLE)
+                txtLast.setText("前回 : ×")
+            }
+            1 ->{
+                txtLast.setVisibility(View.VISIBLE)
+                txtLast.setText("前回 : ○")
+            }
+        }//when end
     }
 
 }

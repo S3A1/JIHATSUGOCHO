@@ -14,8 +14,8 @@ class Disp07 : AppCompatActivity() {
     val GLOBAL = MyApp.getInstance()
 
     //この変数に問題と解答を設定する
-    val Question: String = "問題";
-    val Answer: String = "解答";
+    val Question:String="問題";
+    val Answer:String="解答";
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,26 +41,27 @@ class Disp07 : AppCompatActivity() {
 
 
     fun setQuestion() {
-        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER])
-        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.PAGE_NUMBER])
+        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
+        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
     }
 
     fun tap_btnChange(view: View?) {
         val intent = Intent(this, Disp11::class.java)
         startActivity(intent)
-    }
-
-    fun tap_btnHome(view: View?) {
         finish()
     }
 
-    fun tap_btnDelete(view: View?) {
+    fun tap_btnHome(view : View?){
+        finish()
+    }
+
+    fun tap_btnDelete(view : View?){
         //ここに削除のダイアログを表示するようにする　※担当吉田に代わります
-        val dialog: ClsTextInputDialog = ClsTextInputDialog(this)
+        val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
         // ダイアログ用にクラスを作っているのでそこに設定している
         dialog.dialogTitle = "削除"
         dialog.dialogMessage = "本当に削除しますか？"
-        dialog.onOkClickListener = DialogInterface.OnClickListener { _, _ ->
+        dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
             // OK選択時の処理
             DeleteQuestion()
             setQuestion()
@@ -70,12 +71,13 @@ class Disp07 : AppCompatActivity() {
         dialog.openDialog(supportFragmentManager)
     }
 
-    fun DeleteQuestion() {
+    fun DeleteQuestion(){
         //削除対象が最終番であった場合は削除しポインタを一つ戻す
         if (GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER + 1] == null) {
             GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER] = null
             GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER] = null
-            GLOBAL.PAGE_NUMBER -= 1;
+            GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER] = -1
+            GLOBAL.PAGE_NUMBER-=1
         } else {
             //削除対象から後の項番をひとつづつずらす
             for (i in GLOBAL.PAGE_NUMBER..118) {
@@ -83,11 +85,14 @@ class Disp07 : AppCompatActivity() {
                     GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
                 GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + i] =
                     GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
+                GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + i] =
+                    GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
             }
         }
         //末尾にnullを追加
         GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + 119] = null
         GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + 119] = null
+        GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + 119] = -1
 
     }
 
@@ -100,7 +105,7 @@ class Disp07 : AppCompatActivity() {
                 GLOBAL.PAGE_NUMBER += 1;
             }
         }
-        if (i == -1) {
+        if(i==-1) {
             if (GLOBAL.PAGE_NUMBER == 0) {
                 for (n in 0..119) {
                     if (GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + n] == null) {
@@ -108,23 +113,27 @@ class Disp07 : AppCompatActivity() {
                         break;
                     }
                 }
-            } else {
-                GLOBAL.PAGE_NUMBER -= 1;
+            }
+            else{
+                GLOBAL.PAGE_NUMBER-=1;
             }
         }
     }
 
     //回答表示非表示の切り替え
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        when (event!!.action) {
+    override fun onTouchEvent(event: MotionEvent):Boolean
+    {
+        when(event!!.action){
             MotionEvent.ACTION_DOWN -> {
-                if (txtAnswer.getVisibility() == View.VISIBLE) {
+                if(txtAnswer.getVisibility()==View.VISIBLE){
                     txtAnswer.setVisibility(View.INVISIBLE)
-                } else if (txtAnswer.getVisibility() == View.INVISIBLE) {
+                }
+                else if(txtAnswer.getVisibility()==View.INVISIBLE){
                     txtAnswer.setVisibility(View.VISIBLE)
                 }
             }
         }
         return false//onTouchEventの終了
     }
+
 }
