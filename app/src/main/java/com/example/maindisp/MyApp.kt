@@ -16,11 +16,8 @@ class MyApp :Application(){
 
 
     //開始時処理
-
     override fun onCreate() {
-
         super.onCreate()
-        val GLOBAL=MyApp.getInstance()
         READFILE()
     }
 
