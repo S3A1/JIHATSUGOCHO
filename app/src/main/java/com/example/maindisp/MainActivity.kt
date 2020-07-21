@@ -22,10 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        list.text = GLOBAL.NOTE[0]
-
-
         fab.setOnClickListener { view ->
             //testText.setText("ふろーちんぐおされたわぁ")
             val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
@@ -62,13 +58,6 @@ class MainActivity : AppCompatActivity() {
             ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
             i++
         }
-
-
-
-
-
-
-
 
 
 
