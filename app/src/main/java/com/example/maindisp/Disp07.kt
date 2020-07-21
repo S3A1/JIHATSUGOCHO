@@ -13,10 +13,6 @@ class Disp07 : AppCompatActivity() {
 
     val GLOBAL = MyApp.getInstance()
 
-    //この変数に問題と解答を設定する
-    val Question: String = "問題";
-    val Answer: String = "解答";
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp07)
@@ -41,8 +37,8 @@ class Disp07 : AppCompatActivity() {
 
 
     fun setQuestion() {
-        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER])
-        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.PAGE_NUMBER])
+        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
+        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
     }
 
     fun tap_btnChange(view: View?) {

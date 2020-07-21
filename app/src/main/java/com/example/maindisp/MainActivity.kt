@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity() {
             dialog.dialogTitle = "テキスト入力"
             dialog.dialogMessage = "文字を入力してください！"
             dialog.dialogTextData = "教科名"//testText.text.toString()
+            //ここはヒント表示に切り替える
             dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
                 // OK選択時の処理
-                val textData = dialog.dialogTextData
-                testText.text = textData
+                GLOBAL.AddNoteName(dialog.dialogTextData)
             }
             dialog.isCancelButton = true
             // ダイアログ表示
@@ -58,11 +58,13 @@ class MainActivity : AppCompatActivity() {
                 if(GLOBAL.NOTE[i]!=null){
                     try{
                         val file=File("$filesDir/" +GLOBAL.NOTE[i] +".csv")
-                        var str=CreateCSV()
-                        file.writeText(CreateCSV())
+                        file.writeText(CreateCSV(i))
                     }catch(e:Exception){
 
                     }
+                }
+                else{
+                    break
                 }
             }
         }catch(e:Exception){
@@ -70,13 +72,13 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-    fun CreateCSV():String{
+//ここから
+    fun CreateCSV(i:Int):String{
         var strBuffer:String=""
         //保存データを作成
         for(n in 0..119){
             if(GLOBAL.QUESTION[n]!=null){
-                strBuffer+=GLOBAL.QUESTION[n]+","+GLOBAL.ANSWER[n]+"\n"
+                strBuffer+=GLOBAL.QUESTION[i*120+n]+","+GLOBAL.ANSWER[i*120+n]+"\n"
             }
         }
         return strBuffer
@@ -88,6 +90,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun tap_btnWarpDisp07(view: View?){
+        GLOBAL.NOTE_NUMBER=1
+        GLOBAL.PAGE_NUMBER=0
         val intent= Intent(this,Disp07::class.java)
         startActivity(intent)
     }
@@ -108,15 +112,19 @@ class MainActivity : AppCompatActivity() {
     fun tap_btnFileTest(view : View?){
         val fileName1 = "$filesDir" + "/果物の漢字.csv"
         val fileName2 = "$filesDir" + "/元素記号.csv"
+        val fileName3 = "$filesDir"+"/県庁所在地.csv"
 
         val text1     = "林檎,りんご\n葡萄,ぶどう\n桜桃,さくらんぼ\n枇杷,びわ\n檸檬,れもん"
         val text2     = "1:H,水素\n2:He,ヘリウム\n3:Li,リチウム\n4:Be,ベリリウム\n5:B,ホウ素\n6:C,炭素\n7:N,窒素\n8:O,酸素\n9:F,フッ素\n10:Ne,ネオン"
+        val text3="宮城,仙台\n群馬,前橋\n栃木,宇都宮\n茨城,水戸\n"
 
         try{
             val writeFile1 = File(fileName1)
             writeFile1.writeText(text1)
             val  writeFile2= File(fileName2)
             writeFile2.writeText(text2)
+            val writeFile3 = File(fileName3)
+            writeFile3.writeText(text3)
         } catch (e: FileNotFoundException){
             println(e)
         }
