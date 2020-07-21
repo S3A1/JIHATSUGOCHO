@@ -48,8 +48,7 @@ class MainActivity : AppCompatActivity() {
             ((tr.getChildAt(0))as CheckBox).setTag(i)
             ((tr.getChildAt(1)) as Button).setOnClickListener {
                 //この中に処理を書きます
-                val intent = Intent(this, Disp02::class.java)
-                startActivity(intent)
+                tap_btnWarpDisp02(it)
             }
             //タグをセットする
             ((tr.getChildAt(1)) as Button).setTag(i)
