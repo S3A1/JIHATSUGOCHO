@@ -72,12 +72,11 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-//ここから
     fun CreateCSV(i:Int):String{
         var strBuffer:String=""
         //保存データを作成
         for(n in 0..119){
-            if(GLOBAL.QUESTION[n]!=null){
+            if(GLOBAL.QUESTION[i*120+n]!=null){
                 strBuffer+=GLOBAL.QUESTION[i*120+n]+","+GLOBAL.ANSWER[i*120+n]+"\n"
             }
         }
