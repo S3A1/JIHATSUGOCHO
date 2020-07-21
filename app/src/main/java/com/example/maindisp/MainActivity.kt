@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         //保存データを作成
         for(n in 0..119){
             if(GLOBAL.QUESTION[i*120+n]!=null){
-                strBuffer+=GLOBAL.QUESTION[i*120+n]+","+GLOBAL.ANSWER[i*120+n]+"\n"
+                strBuffer+=GLOBAL.QUESTION[i*120+n]+","+GLOBAL.ANSWER[i*120+n]+","+GLOBAL.LAST[i*120+n].toString()+"\n"
             }
         }
         return strBuffer
@@ -88,8 +88,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
     fun tap_btnWarpDisp07(view: View?){
-        GLOBAL.NOTE_NUMBER=1
+        GLOBAL.NOTE_NUMBER=2
         GLOBAL.PAGE_NUMBER=0
         val intent= Intent(this,Disp07::class.java)
         startActivity(intent)
@@ -113,9 +114,9 @@ class MainActivity : AppCompatActivity() {
         val fileName2 = "$filesDir" + "/元素記号.csv"
         val fileName3 = "$filesDir"+"/県庁所在地.csv"
 
-        val text1     = "林檎,りんご\n葡萄,ぶどう\n桜桃,さくらんぼ\n枇杷,びわ\n檸檬,れもん"
-        val text2     = "1:H,水素\n2:He,ヘリウム\n3:Li,リチウム\n4:Be,ベリリウム\n5:B,ホウ素\n6:C,炭素\n7:N,窒素\n8:O,酸素\n9:F,フッ素\n10:Ne,ネオン"
-        val text3="宮城,仙台\n群馬,前橋\n栃木,宇都宮\n茨城,水戸\n福岡,福岡\n沖縄,那覇"
+        val text1     = "林檎,りんご,-1\n葡萄,ぶどう,-1\n桜桃,さくらんぼ,-1\n枇杷,びわ,-1\n檸檬,れもん,-1"
+        val text2     = "1:H,水素,-1\n2:He,ヘリウム,-1\n3:Li,リチウム,-1\n4:Be,ベリリウム,-1\n5:B,ホウ素,-1\n6:C,炭素,-1\n7:N,窒素,-1\n8:O,酸素,-1\n9:F,フッ素,-1\n10:Ne,ネオン,-1"
+        val text3="宮城,仙台,-1\n群馬,前橋,-1\n栃木,宇都宮,-1\n茨城,水戸,-1\n福岡,福岡,-1\n沖縄,那覇,-1"
 
         try{
             val writeFile1 = File(fileName1)
