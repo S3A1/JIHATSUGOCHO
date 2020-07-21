@@ -5,6 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.TableRow
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -14,9 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-        list.text = GLOBAL.NOTE[0]
 
 
         fab.setOnClickListener { view ->
@@ -35,7 +36,38 @@ class MainActivity : AppCompatActivity() {
             // ダイアログ表示
             dialog.openDialog(supportFragmentManager)
         }
-        list.setOnClickListener{tap_btnWarpDisp02(it)}
+
+
+        val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
+        var i = 0
+        while(GLOBAL.NOTE[i] != null){
+            testText.text=GLOBAL.NOTE[i]
+            getLayoutInflater().inflate(R.layout.table, vg)
+            val tr = vg.getChildAt(i) as TableRow
+            ((tr.getChildAt(0))as CheckBox).isChecked()
+            ((tr.getChildAt(0))as CheckBox).setTag(i)
+            ((tr.getChildAt(1)) as Button).setOnClickListener {
+                //この中に処理を書きます
+                val intent = Intent(this, Disp02::class.java)
+                startActivity(intent)
+            }
+            //タグをセットする
+            ((tr.getChildAt(1)) as Button).setTag(i)
+            //((tr.getChildAt(1)) as Button).setText(((tr.getChildAt(1)) as Button).getTag().toString())
+            ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
+            i++
+        }
+
+
+
+
+
+
+
+
+
+
+        btnWarpDisp02.setOnClickListener{tap_btnWarpDisp02(it)}
         GLOBAL.PAGE_NUMBER=0
 
         edit.setOnClickListener {

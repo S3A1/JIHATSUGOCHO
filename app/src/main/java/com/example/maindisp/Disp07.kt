@@ -75,7 +75,7 @@ class Disp07 : AppCompatActivity() {
         if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER+1]==null){
             GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=null
             GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=null
-            GLOBAL.PAGE_NUMBER-=1;
+            GLOBAL.PAGE_NUMBER-=1
         }
         else {
             //削除対象から後の項番をひとつづつずらす

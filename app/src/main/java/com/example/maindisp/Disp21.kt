@@ -3,7 +3,6 @@ package com.example.maindisp
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_disp21.*
@@ -18,10 +17,10 @@ class Disp21 : AppCompatActivity() {
         setContentView(R.layout.activity_disp21)
         setSupportActionBar(toolbar)
 
-        list.text = GLOBAL.NOTE[0]
+        btnWarpDisp02.text = GLOBAL.NOTE[0]
 
 
-        list.setOnClickListener {
+        btnWarpDisp02.setOnClickListener {
             val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
             // ダイアログ用にクラスを作っているのでそこに設定している
             dialog.dialogTitle = "タイトルの編集"
