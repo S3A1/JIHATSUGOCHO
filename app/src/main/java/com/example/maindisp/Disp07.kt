@@ -71,6 +71,7 @@ class Disp07 : AppCompatActivity() {
         if (GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER + 1] == null) {
             GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER] = null
             GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER] = null
+            GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + GLOBAL.PAGE_NUMBER] = -1
             GLOBAL.PAGE_NUMBER -= 1;
         } else {
             //削除対象から後の項番をひとつづつずらす
@@ -79,11 +80,14 @@ class Disp07 : AppCompatActivity() {
                     GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
                 GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + i] =
                     GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
+                GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + i] =
+                    GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + (i + 1)]
             }
         }
         //末尾にnullを追加
         GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + 119] = null
         GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + 119] = null
+        GLOBAL.LAST[GLOBAL.NOTE_NUMBER * 120 + 119] = -1
 
     }
 

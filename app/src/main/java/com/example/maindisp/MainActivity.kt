@@ -25,9 +25,9 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
             // ダイアログ用にクラスを作っているのでそこに設定している
-            dialog.dialogTitle = "テキスト入力"
-            dialog.dialogMessage = "文字を入力してください！"
-            dialog.dialogTextData = "教科名"//testText.text.toString()
+            dialog.dialogTitle = "新規ノート作成"
+            dialog.dialogMessage = "ノート名を入力してください"
+            dialog.dialogTextData = "ノート名"//testText.text.toString()
             //ここはヒント表示に切り替える
             dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
                 // OK選択時の処理
@@ -70,14 +70,16 @@ class MainActivity : AppCompatActivity() {
         }catch(e:Exception){
 
         }
-
     }
     fun CreateCSV(i:Int):String{
         var strBuffer:String=""
         //保存データを作成
         for(n in 0..119){
             if(GLOBAL.QUESTION[i*120+n]!=null){
-                strBuffer+=GLOBAL.QUESTION[i*120+n]+","+GLOBAL.ANSWER[i*120+n]+","+GLOBAL.LAST[i*120+n].toString()+"\n"
+                strBuffer+=GLOBAL.QUESTION[i*120+n]+","+GLOBAL.ANSWER[i*120+n]+","+GLOBAL.LAST[i*120+n].toString()
+                if(GLOBAL.QUESTION[i*120+n+1]!=null){
+                    strBuffer+="\n"
+                }
             }
         }
         return strBuffer
@@ -87,7 +89,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, Disp02::class.java)
         startActivity(intent)
     }
-
 
     fun tap_btnWarpDisp07(view: View?){
         GLOBAL.NOTE_NUMBER=2
@@ -106,6 +107,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun tap_btnWarpDisp18(view :View?){
         GLOBAL.PAGE_NUMBER=0
+        GLOBAL.NOTE_NUMBER=2
         val intent= Intent(this,Disp18::class.java)
         startActivity(intent)
     }

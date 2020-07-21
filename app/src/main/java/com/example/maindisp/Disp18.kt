@@ -65,8 +65,8 @@ class Disp18 : AppCompatActivity() {
     }
 
     fun setQuestion(){
-        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.PAGE_NUMBER])
-        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.PAGE_NUMBER])
+        txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
+        txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
     }
 
     fun setLastLabel() {
