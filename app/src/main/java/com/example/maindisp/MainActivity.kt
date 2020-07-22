@@ -1,6 +1,6 @@
 package com.example.maindisp
 
-import android.content.Context
+
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
