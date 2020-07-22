@@ -6,6 +6,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.TableRow
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.io.File
@@ -18,11 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        list.text = GLOBAL.NOTE[0]
-
-
         fab.setOnClickListener { view ->
+            //testText.setText("ふろーちんぐおされたわぁ")
             val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
             // ダイアログ用にクラスを作っているのでそこに設定している
             dialog.dialogTitle = "新規ノート作成"
@@ -37,7 +38,30 @@ class MainActivity : AppCompatActivity() {
             // ダイアログ表示
             dialog.openDialog(supportFragmentManager)
         }
-        list.setOnClickListener{tap_btnWarpDisp02(it)}
+
+
+        val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
+        var i = 0
+        while(GLOBAL.NOTE[i] != null){
+            testText.text=GLOBAL.NOTE[i]
+            getLayoutInflater().inflate(R.layout.table, vg)
+            val tr = vg.getChildAt(i) as TableRow
+            ((tr.getChildAt(0))as CheckBox).isChecked()
+            ((tr.getChildAt(0))as CheckBox).setTag(i)
+            ((tr.getChildAt(1)) as Button).setOnClickListener {
+                //この中に処理を書きます
+                tap_btnWarpDisp02(it)
+            }
+            //タグをセットする
+            ((tr.getChildAt(1)) as Button).setTag(i)
+            //((tr.getChildAt(1)) as Button).setText(((tr.getChildAt(1)) as Button).getTag().toString())
+            ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
+            i++
+        }
+
+
+
+        btnWarpDisp02.setOnClickListener{tap_btnWarpDisp02(it)}
         GLOBAL.PAGE_NUMBER=0
 
         edit.setOnClickListener {
@@ -45,7 +69,10 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
+    fun tap_btnWarpDisp02(view: View?) {
+        val intent = Intent(this, Disp02::class.java)
+        startActivity(intent)
+    }
     //終了時処理
     override fun onDestroy(){
         super.onDestroy()
@@ -85,10 +112,6 @@ class MainActivity : AppCompatActivity() {
         return strBuffer
     }
 
-    fun tap_btnWarpDisp02(view:View?){
-        val intent = Intent(this, Disp02::class.java)
-        startActivity(intent)
-    }
 
     fun tap_btnWarpDisp07(view: View?){
         GLOBAL.NOTE_NUMBER=2
@@ -111,6 +134,11 @@ class MainActivity : AppCompatActivity() {
         val intent= Intent(this,Disp18::class.java)
         startActivity(intent)
     }
+    fun tap_btnNotifiSetting(view : View?){
+        val intent = Intent(this, Disp13::class.java)
+        startActivity(intent)
+    }
+
     fun tap_btnFileTest(view : View?){
         val fileName1 = "$filesDir" + "/果物の漢字.csv"
         val fileName2 = "$filesDir" + "/元素記号.csv"
