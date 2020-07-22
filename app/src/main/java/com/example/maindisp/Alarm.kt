@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -17,9 +18,10 @@ class Alarm : AppCompatActivity(){
 
     val GLOBAL = MyApp.getInstance()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        onNotification("テスト","本文")
+        testNotification()
         if(GLOBAL.TIMESPAN!=-1){
             setAlarmManager()
         }
@@ -74,6 +76,29 @@ class Alarm : AppCompatActivity(){
         with(NotificationManagerCompat.from(this)) {
             notify(1234567, builder.build())
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun testNotification(){
+        val notificationManager=getSystemService(Context.NOTIFICATION_SERVICE)as NotificationManager
+        val name="通知のタイトル"
+        val id="unique ID"
+        val notifyDescription="通知の詳細情報"
+        if (notificationManager.getNotificationChannel(id) == null) {
+            val mChannel = NotificationChannel(id, name, NotificationManager.IMPORTANCE_HIGH)
+            mChannel.apply {
+                description = notifyDescription
+            }
+            notificationManager.createNotificationChannel(mChannel)
+        }
+        val notification = NotificationCompat
+            .Builder(this, id)
+            .apply {
+                setSmallIcon(R.drawable.ic_launcher_background)
+                setContentTitle("タイトルだよ")
+                setContentText("内容だよ")
+            }.build()
+        notificationManager.notify(1, notification)
     }
 
 
