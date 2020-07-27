@@ -61,6 +61,7 @@ class Disp02 : AppCompatActivity() {
         fab.setOnClickListener { view ->
             val intent= Intent(this,Disp08::class.java)
             startActivity(intent)
+            finish()
         }
 
     }
@@ -76,7 +77,6 @@ class Disp02 : AppCompatActivity() {
                 return true
             }
             R.id.Delete -> {
-
                 return true
             }
             R.id.Home -> {
@@ -89,3 +89,8 @@ class Disp02 : AppCompatActivity() {
 
 
 }
+
+
+
+//https://android.roof-balcony.com/activity/back-key-event/
+//戻るボタンの処理を追加する、削除実行時に空白が選択できる問題あり

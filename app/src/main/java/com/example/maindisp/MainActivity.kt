@@ -70,6 +70,9 @@ class MainActivity : AppCompatActivity() {
         dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
             // OK選択時の処理
             GLOBAL.AddNoteName(dialog.dialogTextData)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         dialog.isCancelButton = true
         // ダイアログ表示
