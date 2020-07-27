@@ -56,6 +56,8 @@ class Disp02 : AppCompatActivity() {
 
         }
 
+        
+
         fab.setOnClickListener { view ->
             val intent= Intent(this,Disp08::class.java)
             startActivity(intent)
