@@ -56,9 +56,11 @@ class Disp02 : AppCompatActivity() {
 
         }
 
+        
+
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val intent= Intent(this,Disp08::class.java)
+            startActivity(intent)
         }
 
     }
