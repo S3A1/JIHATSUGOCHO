@@ -57,11 +57,6 @@ class MainActivity : AppCompatActivity() {
             }
             i++
         }
-
-
-
-
-        btnWarpDisp02.setOnClickListener{tap_btnWarpDisp02(it)}
         GLOBAL.PAGE_NUMBER=0
 
         edit.setOnClickListener {

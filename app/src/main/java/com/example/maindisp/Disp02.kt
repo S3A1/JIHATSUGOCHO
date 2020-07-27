@@ -7,6 +7,8 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_disp02.*
+import kotlinx.android.synthetic.main.activity_disp02.fab
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class Disp02 : AppCompatActivity() {
@@ -18,7 +20,7 @@ class Disp02 : AppCompatActivity() {
         setContentView(R.layout.activity_disp02)
         setSupportActionBar(toolbar)
 
-        btnWarpDisp02.text = GLOBAL.NOTE[GLOBAL.NOTE_NUMBER]
+        //btnWarpDisp07.text = GLOBAL.NOTE[GLOBAL.NOTE_NUMBER]
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
