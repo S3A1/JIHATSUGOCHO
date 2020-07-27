@@ -3,10 +3,13 @@ package com.example.maindisp
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import java.util.*
@@ -15,6 +18,11 @@ class Disp13 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp13)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.disp13_menu, menu)
+        return true
     }
 
     fun CreateDialog(){
@@ -92,5 +100,15 @@ class Disp13 : AppCompatActivity() {
     }
     fun tap_btnHome(view :View?){
         finish()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.Home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 }

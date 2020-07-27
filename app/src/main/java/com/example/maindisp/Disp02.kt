@@ -57,12 +57,6 @@ class Disp02 : AppCompatActivity() {
             i++
         }
 
-
-
-
-
-
-
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -71,7 +65,7 @@ class Disp02 : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{
-        menuInflater.inflate(R.menu.disp07_menu, menu)
+        menuInflater.inflate(R.menu.disp02_menu, menu)
         return true
     }
 
