@@ -1,6 +1,5 @@
 package com.example.maindisp
 
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +10,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TableRow
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_disp21.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.io.File
 import java.io.FileNotFoundException
@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         fab.setOnClickListener { view ->
-            //testText.setText("ふろーちんぐおされたわぁ")
             val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
             // ダイアログ用にクラスを作っているのでそこに設定している
             dialog.dialogTitle = "新規ノート作成"
@@ -42,35 +41,38 @@ class MainActivity : AppCompatActivity() {
 
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
         var i = 0
-        while(GLOBAL.NOTE[i] != null){
-            testText.text=GLOBAL.NOTE[i]
+        do{
             getLayoutInflater().inflate(R.layout.table, vg)
             val tr = vg.getChildAt(i) as TableRow
-            ((tr.getChildAt(0))as CheckBox).isChecked()
-            ((tr.getChildAt(0))as CheckBox).setTag(i)
-            ((tr.getChildAt(1)) as Button).setOnClickListener {
-                //この中に処理を書きます
-                tap_btnWarpDisp02(it)
-            }
+            //((tr.getChildAt(0))as CheckBox).isChecked()
+            //((tr.getChildAt(0))as CheckBox).setTag(i)
+                ((tr.getChildAt(1)) as Button).setOnClickListener {
+                    //この中に処理を書きます
+                    val page = i
+                    tap_btnWarpDisp02(it,page)
+                }
             //タグをセットする
             ((tr.getChildAt(1)) as Button).setTag(i)
             //((tr.getChildAt(1)) as Button).setText(((tr.getChildAt(1)) as Button).getTag().toString())
-            ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
+            ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i]+i)
+
             i++
-        }
+        }while(GLOBAL.NOTE[i] != null)
 
 
-
-        btnWarpDisp02.setOnClickListener{tap_btnWarpDisp02(it)}
+        testText.text =GLOBAL.NOTE[0]+GLOBAL.NOTE[1]+GLOBAL.NOTE[2]
         GLOBAL.PAGE_NUMBER=0
+
+
 
         edit.setOnClickListener {
             tap_btnWarpDisp21(it)
         }
 
     }
-    fun tap_btnWarpDisp02(view: View?) {
+    fun tap_btnWarpDisp02(view: View? , num:Int) {
         val intent = Intent(this, Disp02::class.java)
+        intent.putExtra("PAGE_NUM",num)
         startActivity(intent)
     }
     //終了時処理
@@ -135,9 +137,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
     fun tap_btnFileTest(view : View?){
-        val fileName1 = "$filesDir" + "/果物の漢字.csv"
-        val fileName2 = "$filesDir" + "/元素記号.csv"
-        val fileName3 = "$filesDir"+"/県庁所在地.csv"
+        val fileName1 = "$filesDir" + "/あ果物の漢字.csv"
+        val fileName2 = "$filesDir" + "/い元素記号.csv"
+        val fileName3 = "$filesDir"+"/う県庁所在地.csv"
 
         val text1     = "林檎,りんご,-1\n葡萄,ぶどう,-1\n桜桃,さくらんぼ,-1\n枇杷,びわ,-1\n檸檬,れもん,-1"
         val text2     = "1:H,水素,-1\n2:He,ヘリウム,-1\n3:Li,リチウム,-1\n4:Be,ベリリウム,-1\n5:B,ホウ素,-1\n6:C,炭素,-1\n7:N,窒素,-1\n8:O,酸素,-1\n9:F,フッ素,-1\n10:Ne,ネオン,-1"

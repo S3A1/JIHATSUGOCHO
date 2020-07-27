@@ -8,12 +8,10 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_disp21"
         tools:context=".Disp21">
-
     <Button
-            android:text="理科(とか)"
+            android:id="@+id/aaa"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnWarpDisp02" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_height="wrap_content" android:text="Button"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
