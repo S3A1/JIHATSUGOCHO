@@ -5,6 +5,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -23,23 +25,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         fab.setOnClickListener { view ->
-            //testText.setText("ふろーちんぐおされたわぁ")
-            val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
-            // ダイアログ用にクラスを作っているのでそこに設定している
-            dialog.dialogTitle = "新規ノート作成"
-            dialog.dialogMessage = "ノート名を入力してください"
-            dialog.dialogTextData = "ノート名"//testText.text.toString()
-            //ここはヒント表示に切り替える
-            dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
-                // OK選択時の処理
-                GLOBAL.AddNoteName(dialog.dialogTextData)
-            }
-            dialog.isCancelButton = true
-            // ダイアログ表示
-            dialog.openDialog(supportFragmentManager)
+            CreateDialog()
+        }
+        CreateButton()
+
+        edit.setOnClickListener {
+            tap_btnWarpDisp21(it)
         }
 
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.mainactivity_menu, menu)
+        return true
+    }
+
+
+    fun CreateButton(){
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
         var i = 0
         while(GLOBAL.NOTE[i] != null){
@@ -57,13 +59,24 @@ class MainActivity : AppCompatActivity() {
             }
             i++
         }
-        GLOBAL.PAGE_NUMBER=0
-
-        edit.setOnClickListener {
-            tap_btnWarpDisp21(it)
-        }
-
     }
+
+    fun CreateDialog(){
+        val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+        // ダイアログ用にクラスを作っているのでそこに設定している
+        dialog.dialogTitle = "新規ノート作成"
+        dialog.dialogMessage = "ノート名を入力してください"
+        dialog.dialogTextData = "ノート名"//testText.text.toString()
+        //ここはヒント表示に切り替える
+        dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
+            // OK選択時の処理
+            GLOBAL.AddNoteName(dialog.dialogTextData)
+        }
+        dialog.isCancelButton = true
+        // ダイアログ表示
+        dialog.openDialog(supportFragmentManager)
+    }
+
     fun tap_btnWarpDisp02(view: View?) {
         val intent = Intent(this, Disp02::class.java)
         startActivity(intent)
@@ -154,4 +167,26 @@ class MainActivity : AppCompatActivity() {
             println(e)
         }
     }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.Edit -> {
+                return true
+            }
+            R.id.Delete -> {
+                return true
+            }
+            R.id.NotSetting -> {
+                val intent = Intent(this, Disp13::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.Import -> {
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
 }
