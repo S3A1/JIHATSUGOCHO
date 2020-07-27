@@ -9,11 +9,6 @@
         tools:showIn="@layout/activity_disp02"
         tools:context=".Disp02">
 
-    <Button
-            android:id="@+id/btndisp07"
-            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Button"
-            tools:layout_editor_absoluteX="33dp" tools:layout_editor_absoluteY="58dp"/>
-
     <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
