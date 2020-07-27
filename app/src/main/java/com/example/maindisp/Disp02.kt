@@ -18,7 +18,7 @@ class Disp02 : AppCompatActivity() {
         setContentView(R.layout.activity_disp02)
         setSupportActionBar(toolbar)
 
-        btnWarpDisp02.text = GLOBAL.NOTE[GLOBAL.NOTE_NUMBER]+" "+GLOBAL.NOTE_NUMBER.toString()
+        btnWarpDisp02.text = GLOBAL.NOTE[GLOBAL.NOTE_NUMBER]
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
