@@ -41,6 +41,9 @@ class Disp02 : AppCompatActivity() {
                 val tr = vg.getChildAt(i) as TableRow
                 ((tr.getChildAt(1))as Button).setText("テストモード")
                 ((tr.getChildAt(1)) as Button).setOnClickListener {
+                    GLOBAL.PAGE_NUMBER=0
+                    val intent= Intent(this,Disp18::class.java)
+                    startActivity(intent)
                 }
                 num++
             }else{
