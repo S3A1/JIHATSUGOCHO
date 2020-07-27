@@ -8,18 +8,19 @@
         tools:context=".Disp08">
 
     <Button
-            android:text="@string/btnCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp" android:id="@+id/btnCancel" android:onClick="tap_btnCancel"/>
+            android:id="@+id/btnCancel"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
+            android:onClick="tap_btnCancel"
+            android:text="@string/btnCancel" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
     <Button
-            android:text="@string/btnAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnAdd" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:onClick="tap_btnAdd"/>
+            android:id="@+id/btnAdd"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
+            android:onClick="tap_btnAdd"
+            android:text="@string/btnAdd" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
     <EditText
             android:id="@+id/strQuestion"
             android:layout_width="0dp"
