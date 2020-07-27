@@ -95,8 +95,6 @@ class MyApp :Application(){
     }
 
 
-
-
     companion object {
         private var instance : MyApp? = null
         fun  getInstance(): MyApp {

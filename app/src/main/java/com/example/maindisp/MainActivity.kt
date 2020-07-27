@@ -142,10 +142,6 @@ class MainActivity : AppCompatActivity() {
         val intent= Intent(this,Disp18::class.java)
         startActivity(intent)
     }
-    fun tap_btnNotifiSetting(view : View?){
-        val intent = Intent(this, Disp13::class.java)
-        startActivity(intent)
-    }
 
     fun FileTest(){
         val fileName1 = "$filesDir" + "/果物の漢字.csv"
@@ -153,7 +149,9 @@ class MainActivity : AppCompatActivity() {
         val fileName3 = "$filesDir"+"/県庁所在地.csv"
 
         val text1     = "林檎,りんご,-1\n葡萄,ぶどう,-1\n桜桃,さくらんぼ,-1\n枇杷,びわ,-1\n檸檬,れもん,-1"
-        val text2     = "1:H,水素,-1\n2:He,ヘリウム,-1\n3:Li,リチウム,-1\n4:Be,ベリリウム,-1\n5:B,ホウ素,-1\n6:C,炭素,-1\n7:N,窒素,-1\n8:O,酸素,-1\n9:F,フッ素,-1\n10:Ne,ネオン,-1\n11:Na,ナトリウム,-1\n12:Mg,マグネシウム,-1\n13:Al,アルミニウム,-1\n14:Si,ケイ素,-1\n15:P,リン,-1\n16:S,硫黄,-1\n17:Cl,塩素,-1\n18:Ar,アルゴン,-1\n19:K,カリウム,-1\n20:Ca,カルシウム,-1\n"
+        val text2     = "1:H,水素,-1\n2:He,ヘリウム,-1\n3:Li,リチウム,-1\n4:Be,ベリリウム,-1\n5:B,ホウ素,-1\n6:C,炭素,-1\n" +
+                "7:N,窒素,-1\n8:O,酸素,-1\n9:F,フッ素,-1\n10:Ne,ネオン,-1\n11:Na,ナトリウム,-1\n12:Mg,マグネシウム,-1\n13:Al,アルミニウム,-1\n" +
+                "14:Si,ケイ素,-1\n15:P,リン,-1\n16:S,硫黄,-1\n17:Cl,塩素,-1\n18:Ar,アルゴン,-1\n19:K,カリウム,-1\n20:Ca,カルシウム,-1\n"
         val text3="宮城,仙台,-1\n群馬,前橋,-1\n栃木,宇都宮,-1\n茨城,水戸,-1\n福岡,福岡,-1\n沖縄,那覇,-1"
 
         try{
