@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
         var i = 0
         while(GLOBAL.NOTE[i] != null){
-            testText.text=GLOBAL.NOTE[i]
             getLayoutInflater().inflate(R.layout.table, vg)
             val tr = vg.getChildAt(i) as TableRow
             ((tr.getChildAt(0))as CheckBox).isChecked()
