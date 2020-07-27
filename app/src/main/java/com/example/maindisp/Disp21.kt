@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_disp21.*
+import kotlinx.android.synthetic.main.content_disp21.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class Disp21 : AppCompatActivity() {
@@ -17,10 +18,10 @@ class Disp21 : AppCompatActivity() {
         setContentView(R.layout.activity_disp21)
         setSupportActionBar(toolbar)
 
-        btnWarpDisp02.text = GLOBAL.NOTE[0]
+        //btn.text = GLOBAL.NOTE[0]
 
 
-        btnWarpDisp02.setOnClickListener {
+        aaa.setOnClickListener {
             val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
             // ダイアログ用にクラスを作っているのでそこに設定している
             dialog.dialogTitle = "タイトルの編集"
