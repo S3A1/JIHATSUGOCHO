@@ -30,6 +30,7 @@ class Disp02 : AppCompatActivity() {
         //val NOTEtxt = GLOBAL.NOTE[GLOBAL.NOTE_NUMBER]
         //btndisp07.text = GLOBAL.NOTE_NUMBER.toString()
 
+        btndisp07.text =GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120]
 
         btndisp07.text =GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120]
 
