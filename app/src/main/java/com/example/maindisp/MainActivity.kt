@@ -171,7 +171,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
-            R.id.Edit -> {
+            R.id.End -> {
                 return true
             }
             R.id.Delete -> {

@@ -14,9 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_disp02.*
 import kotlinx.android.synthetic.main.activity_disp02.fab
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_disp02.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class Disp02 : AppCompatActivity() {
 
@@ -76,7 +74,7 @@ class Disp02 : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
-            R.id.Edit -> {
+            R.id.End -> {
                 return true
             }
             R.id.Delete -> {

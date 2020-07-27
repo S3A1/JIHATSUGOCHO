@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import kotlinx.android.synthetic.main.activity_disp07.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class Disp07 : AppCompatActivity() {
 
@@ -119,7 +118,7 @@ class Disp07 : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
-            R.id.Edit -> {
+            R.id.End -> {
                 val intent = Intent(this, Disp11::class.java)
                 startActivity(intent)
                 finish()

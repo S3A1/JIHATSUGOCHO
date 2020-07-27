@@ -1,8 +1,11 @@
 package com.example.maindisp
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_disp18.*
 import kotlinx.android.synthetic.main.activity_disp18.btnNG
@@ -19,6 +22,11 @@ class Disp18 : AppCompatActivity() {
         setContentView(R.layout.activity_disp18)
         setQuestion()
         setLastLabel()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.disp18_menu, menu)
+        return true
     }
 
     fun tap_btnDisp(view : View?){
@@ -83,6 +91,22 @@ class Disp18 : AppCompatActivity() {
                 txtLast.setText("前回 : ○")
             }
         }//when end
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.End -> {
+                val intent = Intent(this, Disp22::class.java)
+                startActivity(intent)
+                finish()
+                return true
+            }
+            R.id.Home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
 }

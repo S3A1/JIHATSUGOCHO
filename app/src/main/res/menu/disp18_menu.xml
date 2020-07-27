@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/End" android:title="編集"/>
-    <item android:id="@+id/Delete" android:title="削除"/>
     <item android:id="@+id/Home" android:title="リストへ"/>
+    <item android:id="@+id/End" android:title="テストを終了"/>
 </menu>
