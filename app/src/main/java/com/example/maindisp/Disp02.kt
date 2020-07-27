@@ -1,7 +1,10 @@
 package com.example.maindisp
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -29,7 +32,6 @@ class Disp02 : AppCompatActivity() {
 
 
 
-
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
         var i = 0
         while(GLOBAL.NOTE[i] != null){
@@ -48,24 +50,16 @@ class Disp02 : AppCompatActivity() {
             i++
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.disp07_menu, menu)
+        return true
     }
 
     fun tap_btnList(view : View?){
@@ -74,6 +68,23 @@ class Disp02 : AppCompatActivity() {
     }
     fun tap_btnWarpDisp07(view: View?){
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.Edit -> {
+                return true
+            }
+            R.id.Delete -> {
+
+                return true
+            }
+            R.id.Home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
 
