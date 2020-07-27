@@ -13,14 +13,11 @@ class MyApp :Application(){
     var NOTE=Array<String?>(20,{null})//ノートのタイトル
     var PAGE_NUMBER:Int=0//ページ番号管理用 0-119
     var NOTE_NUMBER:Int=0//ノート番号管理用 0-19
-
+    var TIMESPAN:Int=5//通知間隔設定用
 
     //開始時処理
-
     override fun onCreate() {
-
         super.onCreate()
-        val GLOBAL=MyApp.getInstance()
         READFILE()
     }
 
