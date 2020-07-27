@@ -4,10 +4,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import kotlinx.android.synthetic.main.activity_disp07.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class Disp07 : AppCompatActivity() {
 
@@ -23,6 +24,11 @@ class Disp07 : AppCompatActivity() {
         txtListName.setText(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         txtAnswer.setVisibility(View.INVISIBLE)
         setQuestion();
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.disp07_menu, menu)
+        return true
     }
 
     //次ボタン押された場合
@@ -43,32 +49,6 @@ class Disp07 : AppCompatActivity() {
     fun setQuestion() {
         txtQuestion.setText(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
         txtAnswer.setText(GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
-    }
-
-    fun tap_btnChange(view: View?) {
-        val intent = Intent(this, Disp11::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    fun tap_btnHome(view : View?){
-        finish()
-    }
-
-    fun tap_btnDelete(view : View?){
-        //ここに削除のダイアログを表示するようにする　※担当吉田に代わります
-        val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
-        // ダイアログ用にクラスを作っているのでそこに設定している
-        dialog.dialogTitle = "削除"
-        dialog.dialogMessage = "本当に削除しますか？"
-        dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
-            // OK選択時の処理
-            DeleteQuestion()
-            setQuestion()
-        }
-        dialog.isCancelButton = true
-        // ダイアログ表示
-        dialog.openDialog(supportFragmentManager)
     }
 
     fun DeleteQuestion(){
@@ -134,6 +114,37 @@ class Disp07 : AppCompatActivity() {
             }
         }
         return false//onTouchEventの終了
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.End -> {
+                val intent = Intent(this, Disp11::class.java)
+                startActivity(intent)
+                finish()
+                return true
+            }
+            R.id.Delete -> {
+                val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+                // ダイアログ用にクラスを作っているのでそこに設定している
+                dialog.dialogTitle = "削除"
+                dialog.dialogMessage = "本当に削除しますか？"
+                dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
+                    // OK選択時の処理
+                    DeleteQuestion()
+                    setQuestion()
+                }
+                dialog.isCancelButton = true
+                // ダイアログ表示
+                dialog.openDialog(supportFragmentManager)
+                return true
+            }
+            R.id.Home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
 }

@@ -2,6 +2,8 @@ package com.example.maindisp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -12,9 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_disp02.*
 import kotlinx.android.synthetic.main.activity_disp02.fab
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_disp02.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class Disp02 : AppCompatActivity() {
 
@@ -27,6 +27,8 @@ class Disp02 : AppCompatActivity() {
 
         //val NOTEtxt = GLOBAL.NOTE[GLOBAL.NOTE_NUMBER]
         //btndisp07.text = GLOBAL.NOTE_NUMBER.toString()
+
+        btndisp07.text =GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120]
 
         btndisp07.text =GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120]
 
@@ -62,25 +64,6 @@ class Disp02 : AppCompatActivity() {
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -88,9 +71,31 @@ class Disp02 : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.disp02_menu, menu)
+        return true
+    }
+
     fun tap_btnList(view : View?){
         val intent= Intent(this,Disp07::class.java)
         startActivity(intent)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.End -> {
+                return true
+            }
+            R.id.Delete -> {
+
+                return true
+            }
+            R.id.Home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
 

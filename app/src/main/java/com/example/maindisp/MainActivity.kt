@@ -1,10 +1,12 @@
 package com.example.maindisp
 
-import android.content.Context
+
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -23,23 +25,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         fab.setOnClickListener { view ->
-            //testText.setText("ふろーちんぐおされたわぁ")
-            val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
-            // ダイアログ用にクラスを作っているのでそこに設定している
-            dialog.dialogTitle = "新規ノート作成"
-            dialog.dialogMessage = "ノート名を入力してください"
-            dialog.dialogTextData = "ノート名"//testText.text.toString()
-            //ここはヒント表示に切り替える
-            dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
-                // OK選択時の処理
-                GLOBAL.AddNoteName(dialog.dialogTextData)
-            }
-            dialog.isCancelButton = true
-            // ダイアログ表示
-            dialog.openDialog(supportFragmentManager)
+            CreateDialog()
+        }
+        CreateButton()
+
+        edit.setOnClickListener {
+            tap_btnWarpDisp21(it)
         }
 
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.mainactivity_menu, menu)
+        return true
+    }
+
+
+    fun CreateButton(){
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
         var i = 0
         while(GLOBAL.NOTE[i] != null){
@@ -57,13 +59,24 @@ class MainActivity : AppCompatActivity() {
             }
             i++
         }
-        GLOBAL.PAGE_NUMBER=0
-
-        edit.setOnClickListener {
-            tap_btnWarpDisp21(it)
-        }
-
     }
+
+    fun CreateDialog(){
+        val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+        // ダイアログ用にクラスを作っているのでそこに設定している
+        dialog.dialogTitle = "新規ノート作成"
+        dialog.dialogMessage = "ノート名を入力してください"
+        dialog.dialogTextData = "ノート名"//testText.text.toString()
+        //ここはヒント表示に切り替える
+        dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
+            // OK選択時の処理
+            GLOBAL.AddNoteName(dialog.dialogTextData)
+        }
+        dialog.isCancelButton = true
+        // ダイアログ表示
+        dialog.openDialog(supportFragmentManager)
+    }
+
     fun tap_btnWarpDisp02(view: View?) {
         val intent = Intent(this, Disp02::class.java)
         startActivity(intent)
@@ -134,13 +147,13 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun tap_btnFileTest(view : View?){
+    fun FileTest(){
         val fileName1 = "$filesDir" + "/果物の漢字.csv"
         val fileName2 = "$filesDir" + "/元素記号.csv"
         val fileName3 = "$filesDir"+"/県庁所在地.csv"
 
         val text1     = "林檎,りんご,-1\n葡萄,ぶどう,-1\n桜桃,さくらんぼ,-1\n枇杷,びわ,-1\n檸檬,れもん,-1"
-        val text2     = "1:H,水素,-1\n2:He,ヘリウム,-1\n3:Li,リチウム,-1\n4:Be,ベリリウム,-1\n5:B,ホウ素,-1\n6:C,炭素,-1\n7:N,窒素,-1\n8:O,酸素,-1\n9:F,フッ素,-1\n10:Ne,ネオン,-1"
+        val text2     = "1:H,水素,-1\n2:He,ヘリウム,-1\n3:Li,リチウム,-1\n4:Be,ベリリウム,-1\n5:B,ホウ素,-1\n6:C,炭素,-1\n7:N,窒素,-1\n8:O,酸素,-1\n9:F,フッ素,-1\n10:Ne,ネオン,-1\n11:Na,ナトリウム,-1\n12:Mg,マグネシウム,-1\n13:Al,アルミニウム,-1\n14:Si,ケイ素,-1\n15:P,リン,-1\n16:S,硫黄,-1\n17:Cl,塩素,-1\n18:Ar,アルゴン,-1\n19:K,カリウム,-1\n20:Ca,カルシウム,-1\n"
         val text3="宮城,仙台,-1\n群馬,前橋,-1\n栃木,宇都宮,-1\n茨城,水戸,-1\n福岡,福岡,-1\n沖縄,那覇,-1"
 
         try{
@@ -154,4 +167,27 @@ class MainActivity : AppCompatActivity() {
             println(e)
         }
     }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.End -> {
+                return true
+            }
+            R.id.Delete -> {
+                return true
+            }
+            R.id.NotSetting -> {
+                val intent = Intent(this, Disp13::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.Import -> {
+                FileTest()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
 }
