@@ -50,11 +50,7 @@ class Disp02 : AppCompatActivity() {
                 ((tr.getChildAt(1)) as Button).setTag(i)
                 ((tr.getChildAt(1)) as Button).setText(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+i])
                 ((tr.getChildAt(1)) as Button).setOnClickListener {
-                    //GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
-                    //GLOBAL.PAGE_NUMBER=0
-                    //tap_btnWarpDisp02(it)
-                    GLOBAL.NOTE_NUMBER
-                    GLOBAL.PAGE_NUMBER=i
+                    GLOBAL.PAGE_NUMBER=Integer.parseInt(it.getTag().toString())
                     val intent= Intent(this,Disp07::class.java)
                     startActivity(intent)
                 }
