@@ -72,11 +72,6 @@ class Disp02 : AppCompatActivity() {
         return true
     }
 
-    fun tap_btnList(view : View?){
-        val intent= Intent(this,Disp07::class.java)
-        startActivity(intent)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             R.id.End -> {
