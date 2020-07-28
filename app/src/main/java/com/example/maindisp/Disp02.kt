@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.content_disp02.*
 
 class Disp02 : AppCompatActivity() {
 
+    var i = 0
     val GLOBAL=MyApp.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,7 @@ class Disp02 : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
-        var i = 0
+
         var num = 0
         while(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+i] != null){
             getLayoutInflater().inflate(R.layout.table, vg)
@@ -53,10 +54,8 @@ class Disp02 : AppCompatActivity() {
                 num++
                 i++
             }
-
         }
-
-        
+        i--
 
         fab.setOnClickListener { view ->
             val intent= Intent(this,Disp08::class.java)
@@ -76,7 +75,7 @@ class Disp02 : AppCompatActivity() {
                 return true
             }
             R.id.Delete -> {
-
+                fab.setVisibility(View.INVISIBLE)
                 return true
             }
             R.id.Home -> {
