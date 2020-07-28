@@ -21,10 +21,36 @@ class Disp02 : AppCompatActivity() {
     val GLOBAL=MyApp.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp02)
         setSupportActionBar(toolbar)
+        CreatePage()
+    }
 
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.disp02_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.End -> {
+                return true
+            }
+            R.id.Delete -> {
+                return true
+            }
+            R.id.Home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun CreatePage(){
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
         var i = 0
         var num = 0
@@ -56,34 +82,10 @@ class Disp02 : AppCompatActivity() {
 
         }
 
-        
-
         fab.setOnClickListener { view ->
             val intent= Intent(this,Disp08::class.java)
             startActivity(intent)
             finish()
-        }
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
-        menuInflater.inflate(R.menu.disp02_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
-            R.id.End -> {
-                return true
-            }
-            R.id.Delete -> {
-                return true
-            }
-            R.id.Home -> {
-                finish()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
         }
     }
 

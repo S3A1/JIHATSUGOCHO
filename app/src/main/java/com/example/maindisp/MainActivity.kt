@@ -166,6 +166,7 @@ class MainActivity : AppCompatActivity() {
             R.id.NotSetting -> {
                 val intent = Intent(this, Disp13::class.java)
                 startActivity(intent)
+                //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
                 return true
             }
             R.id.Import -> {
