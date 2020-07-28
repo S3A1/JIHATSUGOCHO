@@ -18,10 +18,10 @@ import kotlinx.android.synthetic.main.content_disp02.*
 
 class Disp02 : AppCompatActivity() {
 
+    var i = 0
     val GLOBAL=MyApp.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp02)
         setSupportActionBar(toolbar)
@@ -29,30 +29,11 @@ class Disp02 : AppCompatActivity() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
-        menuInflater.inflate(R.menu.disp02_menu, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
-            R.id.End -> {
-                return true
-            }
-            R.id.Delete -> {
-                return true
-            }
-            R.id.Home -> {
-                finish()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
 
     fun CreatePage(){
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
-        var i = 0
+
         var num = 0
         while(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+i] != null){
             getLayoutInflater().inflate(R.layout.table, vg)
@@ -79,20 +60,37 @@ class Disp02 : AppCompatActivity() {
                 num++
                 i++
             }
-
         }
+        i--
 
         fab.setOnClickListener { view ->
             val intent= Intent(this,Disp08::class.java)
             startActivity(intent)
-            finish()
+        }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.disp02_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.End -> {
+                return true
+            }
+            R.id.Delete -> {
+                fab.setVisibility(View.INVISIBLE)
+                return true
+            }
+            R.id.Home -> {
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 
 
 }
-
-
-
-//https://android.roof-balcony.com/activity/back-key-event/
-//戻るボタンの処理を追加する、削除実行時に空白が選択できる問題あり
