@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.example.maindisp">
+          package="com.example.maindisp">
 
     <application
             android:name=".MyApp"
@@ -10,31 +10,34 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".TEST">
+        </activity>
+
         <receiver
                 android:name=".Receiver"
                 android:enabled="true"
-                android:exported="true"></receiver>
+                android:exported="true"/>
 
-        <activity android:name=".Alarm" />
-        <activity android:name=".Disp13" />
-        <activity android:name=".Disp22" />
-        <activity android:name=".Disp18" />
-        <activity android:name=".Disp08" />
+        <activity android:name=".Alarm"/>
+        <activity android:name=".Disp13"/>
+        <activity android:name=".Disp22"/>
+        <activity android:name=".Disp18"/>
+        <activity android:name=".Disp08"/>
         <activity
                 android:name=".Disp21"
                 android:label="@string/title_activity_disp21"
-                android:theme="@style/AppTheme.NoActionBar" />
+                android:theme="@style/AppTheme.NoActionBar"/>
         <activity
                 android:name=".Disp02"
                 android:label="@string/title_activity_disp02"
-                android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Disp07" />
-        <activity android:name=".Disp11" />
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Disp07"/>
+        <activity android:name=".Disp11"/>
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

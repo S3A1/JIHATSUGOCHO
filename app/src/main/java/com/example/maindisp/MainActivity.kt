@@ -130,6 +130,10 @@ class MainActivity : AppCompatActivity() {
         val intent= Intent(this,Disp08::class.java)
         startActivity(intent)
     }
+    fun tap_btnTEST(view : View?){
+        val intent= Intent(this,TEST::class.java)
+        startActivity(intent)
+    }
 
     fun FileTest(){
         val fileName1 = "$filesDir" + "/果物の漢字.csv"
