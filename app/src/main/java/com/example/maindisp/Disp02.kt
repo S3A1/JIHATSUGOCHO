@@ -25,7 +25,13 @@ class Disp02 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp02)
         setSupportActionBar(toolbar)
+        CreatePage()
+    }
 
+
+
+
+    fun CreatePage(){
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
 
         var num = 0

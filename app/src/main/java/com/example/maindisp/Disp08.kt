@@ -19,16 +19,19 @@ class Disp08 : AppCompatActivity() {
         //最後の項番に文字を登録
         for(i in 0..119){
             if(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+i]==null){
-                GLOBAL.QUESTION[i]=strQuestion.text.toString()
-                GLOBAL.ANSWER[i]=strAnswer.text.toString()
-                break;
+                GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+i]=strQuestion.text.toString()
+                GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+i]=strAnswer.text.toString()
+                break
             }
         }
-        val intent= Intent(this,Disp07::class.java)//本来はDisp02に推移
+        val intent= Intent(this,Disp02::class.java)
         startActivity(intent)
+        finish()
     }
 
     fun tap_btnCancel(view:View?){
+        val intent= Intent(this,Disp02::class.java)
+        startActivity(intent)
         finish()
     }
 }
