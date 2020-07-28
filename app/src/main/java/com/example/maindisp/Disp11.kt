@@ -13,20 +13,21 @@ class Disp11 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp11)
-        strQuestion.setText(GLOBAL.QUESTION[0])
-        strAnswer.setText(GLOBAL.ANSWER[0])
+        strQuestion.setText(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
+        strAnswer.setText(GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER])
     }
 
     fun tap_btnDone(view : View?){
-
-        GLOBAL.QUESTION[0]=strQuestion.text.toString()
-        GLOBAL.ANSWER[0]=strAnswer.text.toString()
-
-        val intent= Intent(this,Disp07::class.java)
+        GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=strQuestion.text.toString()
+        GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=strAnswer.text.toString()
+        GLOBAL.LAST[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=-1
+        val intent = Intent(this, Disp07::class.java)
         startActivity(intent)
+        finish()
     }
     fun tap_btnCancel(view : View?){
-        val intent= Intent(this,Disp07::class.java)
+        val intent = Intent(this, Disp07::class.java)
         startActivity(intent)
+        finish()
     }
 }

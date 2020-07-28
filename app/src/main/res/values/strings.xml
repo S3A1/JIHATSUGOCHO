@@ -1,23 +1,22 @@
 <resources>
-    <string name="app_name">MainDisp</string>
+    <string name="app_name">自発語帳</string>
     <string name="txtQuestion">問題</string>
     <string name="txtAnswer">解答</string>
     <string name="btnChange">編集</string>
     <string name="btnBack">前の問題へ</string>
     <string name="btnNext">次の問題へ</string>
-    <string name="strQuestion">問題文</string>
-    <string name="strAnswer">解答文</string>
     <string name="btnCancel">キャンセル</string>
     <string name="btnDone">変更</string>
     <string name="btnWarpDisp07">Disp07へ</string>
     <string name="btnHome">リストへ</string>
-    <string name="title_activity_test">test</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_disp02">Disp02</string>
+    <string name="btnDelete">削除</string>
+    <string name="btnAdd">追加</string>
+    <string name="btnWarpDisp08">Disp08へ</string>
+    <string name="title_activity_disp21">Disp21</string>
+    <string name="btnDisp">解答を表示</string>
+    <string name="btnOK">正解</string>
+    <string name="btnNG">不正解</string>
+    <string name="btnWarpDisp18">Disp18へ</string>
+    <string name="btnTestEnd">テストを終了</string>
 </resources>
