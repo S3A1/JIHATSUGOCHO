@@ -82,6 +82,8 @@ class Disp02 : AppCompatActivity() {
             }
             R.id.Delete -> {
                 fab.setVisibility(View.INVISIBLE)
+                btncancel.setVisibility(View.VISIBLE)
+                btndelApply.setVisibility(View.VISIBLE)
                 return true
             }
             R.id.Home -> {
