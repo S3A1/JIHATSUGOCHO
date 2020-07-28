@@ -9,7 +9,7 @@
 
     <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="350dp" android:layout_height="120dp"
+            android:layout_width="370dp" android:layout_height="120dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp" android:layout_marginEnd="16dp"
             android:background="#0000" android:scaleType="fitCenter"
@@ -27,7 +27,7 @@
     <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="350dp" android:layout_height="120dp"
-            android:layout_marginStart="16dp" android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp" android:background="#0000"
             android:scaleType="fitCenter" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.482" app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +37,7 @@
             android:layout_width="350dp" android:layout_height="120dp"
             android:layout_marginStart="16dp" android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp" android:background="#0000"
-            android:scaleType="fitCenter" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:srcCompat="@drawable/multi"/>
+            android:onClick="tap_btnTEST" android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:srcCompat="@drawable/multi"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
