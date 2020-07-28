@@ -12,4 +12,15 @@
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="76dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/btnWarpDisp07" android:onClick="tap_btnWarpDisp07"/>
+
+    <Button
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="tap_test"
+            android:text="よっ！"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnWarpDisp07" />
 </androidx.constraintlayout.widget.ConstraintLayout>

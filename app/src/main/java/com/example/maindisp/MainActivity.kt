@@ -14,10 +14,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         GLOBAL.QUESTION[0]="TEST_Q"
         GLOBAL.ANSWER[0]="TEST_A"
+
     }
 
     fun tap_btnWarpDisp07(view:View?){
         val intent= Intent(this,Disp07::class.java)
+        startActivity(intent)
+    }
+
+    fun tap_test(view:View){
+        val intent = Intent(this,test::class.java)
         startActivity(intent)
     }
 }
