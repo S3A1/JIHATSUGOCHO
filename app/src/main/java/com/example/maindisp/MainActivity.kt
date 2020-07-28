@@ -29,9 +29,9 @@ class MainActivity : AppCompatActivity() {
         }
         CreateButton()
 
-        edit.setOnClickListener {
+        /*edit.setOnClickListener {
             tap_btnWarpDisp21(it)
-        }
+        }*/
 
     }
 
