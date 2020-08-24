@@ -9,9 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.TableRow
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.io.File
@@ -45,10 +43,21 @@ class MainActivity : AppCompatActivity() {
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
         var i = 0
         while(GLOBAL.NOTE[i] != null){
-            getLayoutInflater().inflate(R.layout.table, vg)
+            //getLayoutInflater().inflate(R.layout.table, vg)
+            getLayoutInflater().inflate(R.layout.multitable, vg)
             val tr = vg.getChildAt(i) as TableRow
             ((tr.getChildAt(0))as CheckBox).isChecked()
             ((tr.getChildAt(0))as CheckBox).setTag(i)
+
+            //ボタンの状態の生成
+            /*((tr.getChildAt(1)) as Button).setTag(i)
+            ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
+            ((tr.getChildAt(1)) as Button).setOnClickListener {
+                GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
+                GLOBAL.PAGE_NUMBER=0
+                tap_btnWarpDisp02(it)
+            }
+            */
             ((tr.getChildAt(1)) as Button).setTag(i)
             ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
             ((tr.getChildAt(1)) as Button).setOnClickListener {
@@ -56,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                 GLOBAL.PAGE_NUMBER=0
                 tap_btnWarpDisp02(it)
             }
+
             i++
         }
     }

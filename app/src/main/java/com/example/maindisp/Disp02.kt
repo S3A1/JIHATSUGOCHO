@@ -6,9 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.TableRow
+import android.widget.*
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,9 +34,16 @@ class Disp02 : AppCompatActivity() {
 
         var num = 0
         while(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+i] != null){
-            getLayoutInflater().inflate(R.layout.table, vg)
+            getLayoutInflater().inflate(R.layout.singletable, vg)
+            //getLayoutInflater().inflate(R.layout.singletable, vg)
             if(num==0){
                 val tr = vg.getChildAt(i) as TableRow
+                /*((tr.getChildAt(1))as Button).setText("テストモード")
+                ((tr.getChildAt(1)) as Button).setOnClickListener {
+                    GLOBAL.PAGE_NUMBER=0
+                    val intent= Intent(this,Disp18::class.java)
+                    startActivity(intent)
+                }*/
                 ((tr.getChildAt(1))as Button).setText("テストモード")
                 ((tr.getChildAt(1)) as Button).setOnClickListener {
                     GLOBAL.PAGE_NUMBER=0
@@ -57,6 +62,8 @@ class Disp02 : AppCompatActivity() {
                     val intent= Intent(this,Disp07::class.java)
                     startActivity(intent)
                 }
+
+
                 num++
                 i++
             }
@@ -66,6 +73,12 @@ class Disp02 : AppCompatActivity() {
         fab.setOnClickListener { view ->
             val intent= Intent(this,Disp08::class.java)
             startActivity(intent)
+        }
+
+        btncancel.setOnClickListener {
+            fab.setVisibility(View.VISIBLE)
+            btncancel.setVisibility(View.INVISIBLE)
+            btndelApply.setVisibility(View.INVISIBLE)
         }
 
     }
@@ -82,6 +95,8 @@ class Disp02 : AppCompatActivity() {
             }
             R.id.Delete -> {
                 fab.setVisibility(View.INVISIBLE)
+                btncancel.setVisibility(View.VISIBLE)
+                btndelApply.setVisibility(View.VISIBLE)
                 return true
             }
             R.id.Home -> {
