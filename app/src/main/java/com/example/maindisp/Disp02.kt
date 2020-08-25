@@ -34,7 +34,7 @@ class Disp02 : AppCompatActivity() {
 
         var num = 0
         while(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+i] != null){
-            getLayoutInflater().inflate(R.layout.table, vg)
+            getLayoutInflater().inflate(R.layout.singletable, vg)
             //getLayoutInflater().inflate(R.layout.singletable, vg)
             if(num==0){
                 val tr = vg.getChildAt(i) as TableRow
