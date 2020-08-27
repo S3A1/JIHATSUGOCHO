@@ -83,6 +83,7 @@ class Disp02 : AppCompatActivity() {
             val checklist = mutableListOf<Int>()
             val list:List<Int> = checklist
             var lastnum: Int = 0
+            var cnt:Int = 0
 
 
             val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
@@ -94,12 +95,23 @@ class Disp02 : AppCompatActivity() {
                     var num :Int =((tr.getChildAt(0))as CheckBox).getTag().toString().toInt()
                     checklist.add(num)
                     lastnum = num
+                    cnt ++
                 }
             }
             if(checklist.isNotEmpty()){
                 //textView2.setText(checklist[0].toString())
-                for(s in 0 until lastnum){
+                var setnum:Int =0
+                for(s in 0 until i){
+                    for(ss in 0 until cnt) {
+                        if(checklist[ss] != s){
+                            GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + s] = GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + setnum]
+                            setnum++
+                        }
+                        if(setnum > lastnum){
 
+                        }
+
+                    }
                 }
             }else{
                 //削除対象が選択されていませんのダイアログを表示
