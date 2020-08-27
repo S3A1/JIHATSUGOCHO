@@ -23,7 +23,7 @@ class Disp07 : AppCompatActivity() {
         setContentView(R.layout.activity_disp07)
         txtListName.setText(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         txtAnswer.setVisibility(View.INVISIBLE)
-        setQuestion();
+        setQuestion()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{
