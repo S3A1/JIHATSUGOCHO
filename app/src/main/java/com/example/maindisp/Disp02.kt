@@ -1,5 +1,6 @@
 package com.example.maindisp
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -13,11 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import kotlinx.android.synthetic.main.activity_disp02.*
 import kotlinx.android.synthetic.main.activity_disp02.fab
 import kotlinx.android.synthetic.main.content_disp02.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class Disp02 : AppCompatActivity() {
 
     var i = 0
     val GLOBAL=MyApp.getInstance()
+    var btnflg = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +54,16 @@ class Disp02 : AppCompatActivity() {
                 ((tr.getChildAt(1)) as Button).setTag(i)
                 ((tr.getChildAt(1)) as Button).setText(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + i])
                 ((tr.getChildAt(1)) as Button).setOnClickListener {
-                    GLOBAL.PAGE_NUMBER = Integer.parseInt(it.getTag().toString())
-                    val intent = Intent(this, Disp07::class.java)
-                    startActivity(intent)
+                    if(btnflg == 0){
+                        GLOBAL.PAGE_NUMBER = Integer.parseInt(it.getTag().toString())
+                        val intent = Intent(this, Disp07::class.java)
+                        startActivity(intent)
+                    }else if(btnflg ==1){
+                        //編集
+                        val intent = Intent(this, Disp11::class.java)
+                        intent.putExtra("FLG_CODE",1)
+                        startActivity(intent)
+                    }
                 }
                 num++
                 i++
@@ -80,11 +90,12 @@ class Disp02 : AppCompatActivity() {
             btndelApply.setVisibility(View.INVISIBLE)
         }
         btndelApply.setOnClickListener {
+
             val checklist = mutableListOf<Int>()
             val list:List<Int> = checklist
             var lastnum: Int = 0
             var cnt:Int = 0
-
+            btnflg = 2
 
             val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
             getLayoutInflater().inflate(R.layout.singletable, vg)
@@ -102,21 +113,37 @@ class Disp02 : AppCompatActivity() {
                 //textView2.setText(checklist[0].toString())
                 var setnum:Int =0
                 for(s in 0 until i){
+                    var flg:Int = 0
                     for(ss in 0 until cnt) {
-                        if(checklist[ss] != s){
-                            GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + s] = GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + setnum]
-                            setnum++
+                        if(checklist[ss] == s){
+                            flg = 1
                         }
-                        if(setnum > lastnum){
-
-                        }
-
                     }
+                    if(flg == 0){
+                        GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + setnum] = GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + s]
+                        GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER *120 + setnum] =GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + s]
+                        setnum++
+                    }
+                }
+                for(s in setnum until i) {
+                    GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + s] = null
+                    GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER *120 + s] = null
                 }
             }else{
                 //削除対象が選択されていませんのダイアログを表示
-                textView2.setText("10000")
+
             }
+            for(s in 1 until i+1){
+                val tr = vg.getChildAt(s) as TableRow
+                ((tr.getChildAt(0))as CheckBox).setVisibility(View.GONE)
+                ((tr.getChildAt(1))as Button).setEnabled(true)
+            }
+            val tr = vg.getChildAt(0) as TableRow
+            ((tr.getChildAt(1))as Button).setVisibility(View.VISIBLE)
+
+            fab.setVisibility(View.VISIBLE)
+            btncancel.setVisibility(View.INVISIBLE)
+            btndelApply.setVisibility(View.INVISIBLE)
         }
     }
 
@@ -128,6 +155,8 @@ class Disp02 : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             R.id.End -> {
+                btnflg = 1
+                toolbar.setTitle("編集したい項目を選択してください")
                 return true
             }
             R.id.Delete -> {

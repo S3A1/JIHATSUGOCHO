@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         // ダイアログ用にクラスを作っているのでそこに設定している
         dialog.dialogTitle = "新規ノート作成"
         dialog.dialogMessage = "ノート名を入力してください"
-        dialog.dialogTextData = "ノート名"//testText.text.toString()
+        dialog.dialogTextData = "問題"//testText.text.toString()
         //ここはヒント表示に切り替える
         dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
             // OK選択時の処理
@@ -175,6 +175,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.Delete -> {
+
                 return true
             }
             R.id.NotSetting -> {
