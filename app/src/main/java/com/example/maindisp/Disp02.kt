@@ -1,6 +1,5 @@
 package com.example.maindisp
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -8,13 +7,11 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_disp02.*
 import kotlinx.android.synthetic.main.activity_disp02.fab
 import kotlinx.android.synthetic.main.content_disp02.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class Disp02 : AppCompatActivity() {
 
@@ -22,10 +19,11 @@ class Disp02 : AppCompatActivity() {
     val GLOBAL=MyApp.getInstance()
     var btnflg = 0
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp02)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(bar)
         CreatePage()
     }
 
@@ -33,6 +31,8 @@ class Disp02 : AppCompatActivity() {
 
 
     fun CreatePage(){
+        bar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
+        textView2.setText(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
 
         var num = 0
@@ -61,7 +61,7 @@ class Disp02 : AppCompatActivity() {
                     }else if(btnflg ==1){
                         //編集
                         val intent = Intent(this, Disp11::class.java)
-                        intent.putExtra("FLG_CODE",1)
+                        GLOBAL.FLG = true
                         startActivity(intent)
                     }
                 }
@@ -156,7 +156,7 @@ class Disp02 : AppCompatActivity() {
         when (item.getItemId()) {
             R.id.End -> {
                 btnflg = 1
-                toolbar.setTitle("編集したい項目を選択してください")
+                bar.setTitle("編集したい項目を選択してください")
                 return true
             }
             R.id.Delete -> {

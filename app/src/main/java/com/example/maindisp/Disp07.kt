@@ -120,7 +120,6 @@ class Disp07 : AppCompatActivity() {
         when (item.getItemId()) {
             R.id.End -> {
                 val intent = Intent(this, Disp11::class.java)
-                intent.putExtra("FLG_CODE",0)
                 startActivity(intent)
                 finish()
                 return true

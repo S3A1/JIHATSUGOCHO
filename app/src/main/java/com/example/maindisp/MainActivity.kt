@@ -48,16 +48,6 @@ class MainActivity : AppCompatActivity() {
             val tr = vg.getChildAt(i) as TableRow
             ((tr.getChildAt(0))as CheckBox).isChecked()
             ((tr.getChildAt(0))as CheckBox).setTag(i)
-
-            //ボタンの状態の生成
-            /*((tr.getChildAt(1)) as Button).setTag(i)
-            ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
-            ((tr.getChildAt(1)) as Button).setOnClickListener {
-                GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
-                GLOBAL.PAGE_NUMBER=0
-                tap_btnWarpDisp02(it)
-            }
-            */
             ((tr.getChildAt(1)) as Button).setTag(i)
             ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
             ((tr.getChildAt(1)) as Button).setOnClickListener {

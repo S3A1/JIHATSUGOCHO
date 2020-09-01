@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_disp21.*
 import kotlinx.android.synthetic.main.content_disp21.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class Disp21 : AppCompatActivity() {
 
@@ -16,7 +15,7 @@ class Disp21 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp21)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(bar)
 
         //btn.text = GLOBAL.NOTE[0]
 
