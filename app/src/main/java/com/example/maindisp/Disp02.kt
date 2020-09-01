@@ -23,7 +23,6 @@ class Disp02 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp02)
-        setSupportActionBar(bar)
         CreatePage()
     }
 
