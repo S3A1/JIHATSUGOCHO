@@ -31,7 +31,7 @@ class Disp02 : AppCompatActivity() {
 
 
     fun CreatePage(){
-        bar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
+        bar.setTitle("編集したい項目を選択してください")
         textView2.setText(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
 
