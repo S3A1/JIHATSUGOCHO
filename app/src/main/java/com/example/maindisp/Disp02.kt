@@ -24,14 +24,16 @@ class Disp02 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp02)
         CreatePage()
+        setSupportActionBar(bar)
     }
 
-
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.disp02_menu, menu)
+        return true
+    }
 
     fun CreatePage(){
         bar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
-        textView2.setText(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
 
         var num = 0
@@ -146,10 +148,7 @@ class Disp02 : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
-        menuInflater.inflate(R.menu.disp02_menu, menu)
-        return true
-    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
