@@ -10,6 +10,8 @@ class Disp11 : AppCompatActivity() {
 
     val GLOBAL=MyApp.getInstance()
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp11)
@@ -21,13 +23,27 @@ class Disp11 : AppCompatActivity() {
         GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=strQuestion.text.toString()
         GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=strAnswer.text.toString()
         GLOBAL.LAST[GLOBAL.NOTE_NUMBER*120+GLOBAL.PAGE_NUMBER]=-1
-        val intent = Intent(this, Disp07::class.java)
-        startActivity(intent)
-        finish()
+        if(GLOBAL.FLG == true){
+            val intent = Intent(this, Disp02::class.java)
+            startActivity(intent)
+            GLOBAL.FLG ==false
+            finish()
+        }else{
+            val intent = Intent(this, Disp07::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
     fun tap_btnCancel(view : View?){
-        val intent = Intent(this, Disp07::class.java)
-        startActivity(intent)
-        finish()
+        if(GLOBAL.FLG == true){
+            val intent = Intent(this, Disp02::class.java)
+            startActivity(intent)
+            GLOBAL.FLG ==false
+            finish()
+        }else{
+            val intent = Intent(this, Disp07::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

@@ -15,6 +15,11 @@ class MyApp :Application(){
     var NOTE_NUMBER:Int=0//ノート番号管理用 0-19
     var TIMESPAN:Int=5//通知間隔設定用
 
+
+    //吉田テスト
+    var FLG:Boolean = false
+
+
     //開始時処理
     override fun onCreate() {
         super.onCreate()

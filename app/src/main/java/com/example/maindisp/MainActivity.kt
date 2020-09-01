@@ -48,16 +48,6 @@ class MainActivity : AppCompatActivity() {
             val tr = vg.getChildAt(i) as TableRow
             ((tr.getChildAt(0))as CheckBox).isChecked()
             ((tr.getChildAt(0))as CheckBox).setTag(i)
-
-            //ボタンの状態の生成
-            /*((tr.getChildAt(1)) as Button).setTag(i)
-            ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
-            ((tr.getChildAt(1)) as Button).setOnClickListener {
-                GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
-                GLOBAL.PAGE_NUMBER=0
-                tap_btnWarpDisp02(it)
-            }
-            */
             ((tr.getChildAt(1)) as Button).setTag(i)
             ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
             ((tr.getChildAt(1)) as Button).setOnClickListener {
@@ -75,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         // ダイアログ用にクラスを作っているのでそこに設定している
         dialog.dialogTitle = "新規ノート作成"
         dialog.dialogMessage = "ノート名を入力してください"
-        dialog.dialogTextData = "ノート名"//testText.text.toString()
+        dialog.dialogTextData = "問題"//testText.text.toString()
         //ここはヒント表示に切り替える
         dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
             // OK選択時の処理
@@ -175,6 +165,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.Delete -> {
+
                 return true
             }
             R.id.NotSetting -> {
