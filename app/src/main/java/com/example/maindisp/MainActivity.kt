@@ -1,6 +1,7 @@
 package com.example.maindisp
 
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,13 +11,17 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.isInvisible
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.w3c.dom.Text
 import java.io.File
 import java.io.FileNotFoundException
 
 class MainActivity : AppCompatActivity() {
     val GLOBAL=MyApp.getInstance()
+    var btnflg = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +31,6 @@ class MainActivity : AppCompatActivity() {
             CreateDialog()
         }
         CreateButton()
-
-        /*edit.setOnClickListener {
-            tap_btnWarpDisp21(it)
-        }*/
 
     }
 
@@ -51,11 +52,60 @@ class MainActivity : AppCompatActivity() {
             ((tr.getChildAt(1)) as Button).setTag(i)
             ((tr.getChildAt(1)) as Button).setText(GLOBAL.NOTE[i])
             ((tr.getChildAt(1)) as Button).setOnClickListener {
-                GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
-                GLOBAL.PAGE_NUMBER=0
-                tap_btnWarpDisp02(it)
-            }
+                if(btnflg == 0){
+                    //通常
+                    GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
+                    GLOBAL.PAGE_NUMBER=0
+                    tap_btnWarpDisp02(it)
+                }else if (btnflg == 1){
+                    //編集
+                    val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+                    // ダイアログ用にクラスを作っているのでそこに設定している
+                    dialog.dialogTitle = "編集"
+                    dialog.dialogMessage = "リスト名を入力してください"
+                    val tag:Int = ((tr.getChildAt(1)) as Button).getTag().toString().toInt()
+                    dialog.dialogTextData = GLOBAL.NOTE[tag].toString()//testText.text.toString()
+                    //ここはヒント表示に切り替える
+                    dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
+                        // OK選択時の処理
+                        val str:String = dialog.dialogTextData
+                        GLOBAL.NOTE[tag] =str
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        btnflg= 0
+                        finish()
+                    }
+                    dialog.isCancelButton = true
+                    btnflg = 0
+                    // ダイアログ表示
+                    dialog.openDialog(supportFragmentManager)
+                }else{
+                    //削除
+                    GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
+                    var num = 0
+                    while(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+num] != null){
+                        GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+num] = null
+                        GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+num] = null
+                        num++
+                    }
+                    GLOBAL.NOTE[GLOBAL.NOTE_NUMBER] =null
+                    var delnum =GLOBAL.NOTE_NUMBER + 1
+                    if(GLOBAL.NOTE[delnum] != null){
+                        while(GLOBAL.NOTE[delnum] != null){
+                            val setnum = delnum -1
+                            val delsoe = 0
+                            while(GLOBAL.QUESTION[delnum*120+delsoe] != null) {
 
+                            }
+                            delnum++
+                        }
+                    }
+                    btnflg = 0
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
             i++
         }
     }
@@ -72,7 +122,6 @@ class MainActivity : AppCompatActivity() {
             GLOBAL.AddNoteName(dialog.dialogTextData)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
         }
         dialog.isCancelButton = true
         // ダイアログ表示
@@ -97,7 +146,6 @@ class MainActivity : AppCompatActivity() {
                         val file=File("$filesDir/" +GLOBAL.NOTE[i] +".csv")
                         file.writeText(CreateCSV(i))
                     }catch(e:Exception){
-
                     }
                 }
                 else{
@@ -162,10 +210,14 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             R.id.End -> {
+                fab.setVisibility(View.INVISIBLE)
+                btnflg = 1
+                //ConstraintLayout.contextでググれ
                 return true
             }
             R.id.Delete -> {
-
+                fab.setVisibility(View.INVISIBLE)
+                btnflg = 2
                 return true
             }
             R.id.NotSetting -> {

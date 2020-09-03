@@ -23,16 +23,17 @@ class Disp02 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp02)
-        setSupportActionBar(bar)
         CreatePage()
+        setSupportActionBar(bar)
     }
 
-
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.disp02_menu, menu)
+        return true
+    }
 
     fun CreatePage(){
-        bar.setTitle("編集したい項目を選択してください")
-        textView2.setText(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
+        bar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
 
         var num = 0
@@ -95,7 +96,7 @@ class Disp02 : AppCompatActivity() {
             val list:List<Int> = checklist
             var lastnum: Int = 0
             var cnt:Int = 0
-            btnflg = 2
+            btnflg = 0
 
             val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
             getLayoutInflater().inflate(R.layout.singletable, vg)
@@ -144,18 +145,34 @@ class Disp02 : AppCompatActivity() {
             fab.setVisibility(View.VISIBLE)
             btncancel.setVisibility(View.INVISIBLE)
             btndelApply.setVisibility(View.INVISIBLE)
+            val intent = Intent(this, Disp02::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+        btneditcanc.setOnClickListener {
+            fab.setVisibility(View.VISIBLE)
+            btneditcanc.setVisibility(View.INVISIBLE)
+            btnflg = 0
+            val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
+            val tr = vg.getChildAt(0) as TableRow
+            ((tr.getChildAt(1))as Button).setVisibility(View.VISIBLE)
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean{
-        menuInflater.inflate(R.menu.disp02_menu, menu)
-        return true
-    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             R.id.End -> {
                 btnflg = 1
+                val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
+                val tr = vg.getChildAt(0) as TableRow
+                ((tr.getChildAt(1))as Button).setVisibility(View.INVISIBLE)
+                fab.setVisibility(View.INVISIBLE)
+                btneditcanc.setVisibility(View.VISIBLE)
+                btncancel.setVisibility(View.INVISIBLE)
+                btndelApply.setVisibility(View.INVISIBLE)
                 bar.setTitle("編集したい項目を選択してください")
                 return true
             }
@@ -168,10 +185,10 @@ class Disp02 : AppCompatActivity() {
                 }
                 val tr = vg.getChildAt(0) as TableRow
                 ((tr.getChildAt(1))as Button).setVisibility(View.INVISIBLE)
-
                 fab.setVisibility(View.INVISIBLE)
                 btncancel.setVisibility(View.VISIBLE)
                 btndelApply.setVisibility(View.VISIBLE)
+                btneditcanc.setVisibility(View.INVISIBLE)
                 return true
             }
             R.id.Home -> {
