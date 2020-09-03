@@ -24,7 +24,6 @@ class MyApp :Application(){
     override fun onCreate() {
         super.onCreate()
         READFILE()
-        val str="--------------------------------------------------------------------->$filesDir"
     }
 
 
