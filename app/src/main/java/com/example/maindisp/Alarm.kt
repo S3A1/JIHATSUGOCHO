@@ -14,7 +14,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import java.io.File
 import java.util.*
-import kotlin.random.Random
 
 class Alarm : AppCompatActivity(){
 
@@ -31,15 +30,23 @@ class Alarm : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         READFILE()
         testNotification()
-        if(GLOBAL.TIMESPAN!=-1){
+        if(GLOBAL.TIMESPAN>0){
             setAlarmManager()
         }
         finish()
     }
     fun setAlarmManager(){
+
+
+        val file=File("$filesDir/TIMESPAN.txt")
+        val scan=Scanner(file)
+
+        if(scan.hasNext())GLOBAL.TIMESPAN=scan.nextInt()
+        else GLOBAL.TIMESPAN=0
+
         val calendar= Calendar.getInstance()
         calendar.timeInMillis=System.currentTimeMillis()
-        calendar.add(Calendar.SECOND,GLOBAL.TIMESPAN)
+        calendar.add(Calendar.MINUTE,GLOBAL.TIMESPAN)
         val am=getSystemService(Context.ALARM_SERVICE)as AlarmManager
         val intent= Intent(this,Receiver::class.java)
         val pending= PendingIntent.getBroadcast(this,0,intent,0)

@@ -12,12 +12,23 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import java.io.File
+import java.io.FileNotFoundException
 import java.util.*
 
 class Disp13 : AppCompatActivity() {
+
+    val GLOBAL = MyApp.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp13)
+        //val file=File("$filesDir/TIMESPAN.txt")
+        //if(file!=null) {
+        //    val scan = Scanner(file)
+        //    if (scan.hasNext()) GLOBAL.TIMESPAN = scan.nextInt()
+        //    else GLOBAL.TIMESPAN = 0
+        //}
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{
@@ -36,32 +47,43 @@ class Disp13 : AppCompatActivity() {
     fun SetTimeSpan(strTime:String){
         when(strTime){
             "なし"->{
-
+                WriteTimeSpan(0)
             }
             "10分毎"->{
-
+                WriteTimeSpan(10)
             }
             "15分毎"->{
-
+                WriteTimeSpan(15)
             }
             "30分毎"->{
-
+                WriteTimeSpan(30)
             }
             "1時間毎"->{
-
+                WriteTimeSpan(60)
             }
             "3時間毎"->{
-
+                WriteTimeSpan(180)
             }
             "6時間毎"->{
-
+                WriteTimeSpan(360)
             }
             "12時間毎"->{
-
+                WriteTimeSpan(720)
             }
             "24時間毎"->{
-
+                WriteTimeSpan(1440)
             }
+        }
+    }
+
+    fun WriteTimeSpan(MIN:Int){
+        val fileName = "$filesDir" + "/TIMESPAN.txt"
+        val text     = MIN.toString()
+        try{
+            val writeFile = File(fileName)
+            writeFile.writeText(text)
+        } catch (e: FileNotFoundException){
+            println(e)
         }
     }
 
@@ -90,7 +112,7 @@ class Disp13 : AppCompatActivity() {
         CreateDialog()
     }
     fun tap_btnNotStart(view : View?){
-        setAlarmManager()
+        if(GLOBAL.TIMESPAN>0)setAlarmManager()
     }
     fun tap_btnNotEnd(view :View?){
         val am=getSystemService(Context.ALARM_SERVICE)as AlarmManager
