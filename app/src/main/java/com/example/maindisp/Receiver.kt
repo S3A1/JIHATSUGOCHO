@@ -10,4 +10,5 @@ class Receiver : BroadcastReceiver() {
         val intent=Intent(context,Alarm::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
+
 }

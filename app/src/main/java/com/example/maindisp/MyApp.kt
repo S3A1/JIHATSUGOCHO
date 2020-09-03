@@ -24,6 +24,7 @@ class MyApp :Application(){
     override fun onCreate() {
         super.onCreate()
         READFILE()
+        val str="--------------------------------------------------------------------->$filesDir"
     }
 
 
@@ -54,7 +55,7 @@ class MyApp :Application(){
     fun getFileData(f_name:String?,n:Int){
         val GLOBAL=MyApp.getInstance()
         try{
-            val file=File("$filesDir/",f_name+".csv")
+            val file=File("/",f_name+".csv")
             val scan=Scanner(file)
             scan.useDelimiter(",|\n")
             var i:Int=0
