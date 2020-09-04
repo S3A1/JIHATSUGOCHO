@@ -79,6 +79,7 @@ class Disp13 : AppCompatActivity() {
     fun WriteTimeSpan(MIN:Int){
         val fileName = "$filesDir" + "/TIMESPAN.txt"
         val text     = MIN.toString()
+        GLOBAL.TIMESPAN=MIN
         try{
             val writeFile = File(fileName)
             writeFile.writeText(text)
@@ -90,7 +91,7 @@ class Disp13 : AppCompatActivity() {
     fun setAlarmManager(){
         val calendar= Calendar.getInstance()
         calendar.timeInMillis=System.currentTimeMillis()
-        calendar.add(Calendar.SECOND,5)
+        calendar.add(Calendar.MINUTE,GLOBAL.TIMESPAN)
         val am=getSystemService(Context.ALARM_SERVICE)as AlarmManager
         val intent= Intent(this,Receiver::class.java)
         val pending= PendingIntent.getBroadcast(this,0,intent,0)
@@ -112,6 +113,10 @@ class Disp13 : AppCompatActivity() {
         CreateDialog()
     }
     fun tap_btnNotStart(view : View?){
+        val am=getSystemService(Context.ALARM_SERVICE)as AlarmManager
+        val intent = Intent(this,Receiver::class.java)
+        val pending= PendingIntent.getBroadcast(this,0,intent,0)
+        am.cancel(pending)
         if(GLOBAL.TIMESPAN>0)setAlarmManager()
     }
     fun tap_btnNotEnd(view :View?){

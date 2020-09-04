@@ -1,7 +1,6 @@
 package com.example.maindisp
 import android.app.Application
 import java.io.File
-import java.io.FileNotFoundException
 import java.util.*
 
 class MyApp :Application(){
@@ -31,7 +30,6 @@ class MyApp :Application(){
         val GLOBAL=MyApp.getInstance()
         try{
             var list=File("$filesDir").list()
-            var str:String=""
 
             for(i in list.indices){
                 var EX=getExtention(list[i])
