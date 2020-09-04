@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.w3c.dom.Text
 import java.io.File
 import java.io.FileNotFoundException
+import javax.microedition.khronos.opengles.GL
 
 class MainActivity : AppCompatActivity() {
     val GLOBAL=MyApp.getInstance()
@@ -93,10 +94,16 @@ class MainActivity : AppCompatActivity() {
                     if(GLOBAL.NOTE[delnum] != null){
                         while(GLOBAL.NOTE[delnum] != null){
                             val setnum = delnum -1
-                            val delsoe = 0
-                            while(GLOBAL.QUESTION[delnum*120+delsoe] != null) {
-
+                            var delsoe = 0
+                            while(GLOBAL.QUESTION[delnum*120+delsoe] != null){
+                                GLOBAL.QUESTION[setnum*120 + delsoe] =GLOBAL.QUESTION[delnum*120 + delsoe]
+                                GLOBAL.ANSWER[setnum*120 + delsoe] =GLOBAL.ANSWER[delnum*120 + delsoe]
+                                GLOBAL.QUESTION[delnum *120 + delsoe] = null
+                                GLOBAL.ANSWER[delnum *120 + delsoe] = null
+                                delsoe++
                             }
+                            GLOBAL.NOTE[setnum] = GLOBAL.NOTE[delnum]
+                            GLOBAL.NOTE[delnum] = null
                             delnum++
                         }
                     }
