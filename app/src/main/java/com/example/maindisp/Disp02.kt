@@ -24,7 +24,7 @@ class Disp02 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp02)
         CreatePage()
-        setSupportActionBar(bar)
+        setSupportActionBar(appbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{
@@ -33,7 +33,7 @@ class Disp02 : AppCompatActivity() {
     }
 
     fun CreatePage(){
-        bar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
+        appbar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
 
         var num = 0
@@ -173,7 +173,7 @@ class Disp02 : AppCompatActivity() {
                 btneditcanc.setVisibility(View.VISIBLE)
                 btncancel.setVisibility(View.INVISIBLE)
                 btndelApply.setVisibility(View.INVISIBLE)
-                bar.setTitle("編集したい項目を選択してください")
+                appbar.setTitle("編集したい項目を選択してください")
                 return true
             }
             R.id.Delete -> {

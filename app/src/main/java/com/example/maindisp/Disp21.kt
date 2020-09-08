@@ -15,7 +15,7 @@ class Disp21 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp21)
-        setSupportActionBar(bar)
+        setSupportActionBar(appbar)
 
         //btn.text = GLOBAL.NOTE[0]
 
