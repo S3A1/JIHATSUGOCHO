@@ -170,8 +170,6 @@ class Disp02 : AppCompatActivity() {
         }
     }
 
-
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             R.id.End -> {
@@ -202,6 +200,7 @@ class Disp02 : AppCompatActivity() {
                 btneditcanc.setVisibility(View.INVISIBLE)
                 return true
             }
+
             R.id.Home -> {
                 finish()
                 return true

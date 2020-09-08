@@ -82,35 +82,46 @@ class MainActivity : AppCompatActivity() {
                     dialog.openDialog(supportFragmentManager)
                 }else{
                     //削除
-                    GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
-                    var num = 0
-                    while(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+num] != null){
-                        GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+num] = null
-                        GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+num] = null
-                        num++
-                    }
-                    GLOBAL.NOTE[GLOBAL.NOTE_NUMBER] =null
-                    var delnum =GLOBAL.NOTE_NUMBER + 1
-                    if(GLOBAL.NOTE[delnum] != null){
-                        while(GLOBAL.NOTE[delnum] != null){
-                            val setnum = delnum -1
-                            var delsoe = 0
-                            while(GLOBAL.QUESTION[delnum*120+delsoe] != null){
-                                GLOBAL.QUESTION[setnum*120 + delsoe] =GLOBAL.QUESTION[delnum*120 + delsoe]
-                                GLOBAL.ANSWER[setnum*120 + delsoe] =GLOBAL.ANSWER[delnum*120 + delsoe]
-                                GLOBAL.QUESTION[delnum *120 + delsoe] = null
-                                GLOBAL.ANSWER[delnum *120 + delsoe] = null
-                                delsoe++
-                            }
-                            GLOBAL.NOTE[setnum] = GLOBAL.NOTE[delnum]
-                            GLOBAL.NOTE[delnum] = null
-                            delnum++
+                    val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+                    // ダイアログ用にクラスを作っているのでそこに設定している
+                    dialog.dialogTitle = "削除確認"
+                    dialog.dialogMessage = "本当に削除しますか？"
+                    //ここはヒント表示に切り替える
+                    dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
+                        // OK選択時の処理
+                        GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
+                        var num = 0
+                        while(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+num] != null){
+                            GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+num] = null
+                            GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+num] = null
+                            num++
                         }
+                        GLOBAL.NOTE[GLOBAL.NOTE_NUMBER] =null
+                        var delnum =GLOBAL.NOTE_NUMBER + 1
+                        if(GLOBAL.NOTE[delnum] != null){
+                            while(GLOBAL.NOTE[delnum] != null){
+                                val setnum = delnum -1
+                                var delsoe = 0
+                                while(GLOBAL.QUESTION[delnum*120+delsoe] != null){
+                                    GLOBAL.QUESTION[setnum*120 + delsoe] =GLOBAL.QUESTION[delnum*120 + delsoe]
+                                    GLOBAL.ANSWER[setnum*120 + delsoe] =GLOBAL.ANSWER[delnum*120 + delsoe]
+                                    GLOBAL.QUESTION[delnum *120 + delsoe] = null
+                                    GLOBAL.ANSWER[delnum *120 + delsoe] = null
+                                    delsoe++
+                                }
+                                GLOBAL.NOTE[setnum] = GLOBAL.NOTE[delnum]
+                                GLOBAL.NOTE[delnum] = null
+                                delnum++
+                            }
+                        }
+                        btnflg = 0
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
-                    btnflg = 0
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    dialog.isCancelButton = true
+                    // ダイアログ表示
+                    dialog.openDialog(supportFragmentManager)
                 }
             }
             i++
