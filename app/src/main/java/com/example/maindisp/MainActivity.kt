@@ -1,9 +1,9 @@
 package com.example.maindisp
 
 
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -11,13 +11,9 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.isInvisible
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import org.w3c.dom.Text
 import java.io.File
 import java.io.FileNotFoundException
-import javax.microedition.khronos.opengles.GL
 
 class MainActivity : AppCompatActivity() {
     val GLOBAL=MyApp.getInstance()
@@ -27,16 +23,25 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        supportActionBar!!.hide()
         fab.setOnClickListener { view ->
             CreateDialog()
         }
+        fab2.setOnClickListener { view ->
+            btnflg = 0
+            fab.setVisibility(View.VISIBLE)
+            fab2.setVisibility(View.INVISIBLE)
+            appbar.setTitle("自発語帳")
+        }
         CreateButton()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{
-        menuInflater.inflate(R.menu.mainactivity_menu, menu)
+        appbar.inflateMenu(R.menu.mainactivity_menu)
+        appbar.setTitle("自発語帳")
+        appbar.setOnMenuItemClickListener {
+            onOptionsItemSelected(it)
+        }
         return true
     }
 
@@ -45,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
         var i = 0
         while(GLOBAL.NOTE[i] != null){
-            //getLayoutInflater().inflate(R.layout.table, vg)
             getLayoutInflater().inflate(R.layout.multitable, vg)
             val tr = vg.getChildAt(i) as TableRow
             ((tr.getChildAt(0))as CheckBox).isChecked()
@@ -228,12 +232,17 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             R.id.End -> {
+                appbar.setTitle("編集したい項目を選択してください")
+                fab2.setVisibility(View.VISIBLE)
                 fab.setVisibility(View.INVISIBLE)
                 btnflg = 1
                 //ConstraintLayout.contextでググれ
                 return true
             }
             R.id.Delete -> {
+
+                appbar.setTitle("削除したい項目を選択してください")
+                fab2.setVisibility(View.VISIBLE)
                 fab.setVisibility(View.INVISIBLE)
                 btnflg = 2
                 return true

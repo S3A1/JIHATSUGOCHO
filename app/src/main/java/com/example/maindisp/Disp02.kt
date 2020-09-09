@@ -25,7 +25,7 @@ class Disp02 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disp02)
         CreatePage()
-        setSupportActionBar(bar)
+        setSupportActionBar(appbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{
@@ -34,7 +34,7 @@ class Disp02 : AppCompatActivity() {
     }
 
     fun CreatePage(){
-        bar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
+        appbar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
 
         var num = 0
@@ -63,6 +63,7 @@ class Disp02 : AppCompatActivity() {
                         startActivity(intent)
                     }else if(btnflg ==1){
                         //編集
+                        GLOBAL.PAGE_NUMBER = Integer.parseInt(it.getTag().toString())
                         val intent = Intent(this, Disp11::class.java)
                         GLOBAL.FLG = true
                         startActivity(intent)
@@ -87,23 +88,7 @@ class Disp02 : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btncancel.setOnClickListener {
-            val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
-            for(s in 1 until i+1){
-                val tr = vg.getChildAt(s) as TableRow
-                ((tr.getChildAt(0))as CheckBox).setVisibility(View.GONE)
-                ((tr.getChildAt(0)) as CheckBox).isChecked = false
-                ((tr.getChildAt(1))as Button).setEnabled(true)
-            }
-            val tr = vg.getChildAt(0) as TableRow
-            ((tr.getChildAt(1))as Button).setVisibility(View.VISIBLE)
-
-            fab.setVisibility(View.VISIBLE)
-            btncancel.setVisibility(View.INVISIBLE)
-            btndelApply.setVisibility(View.INVISIBLE)
-        }
-        btndelApply.setOnClickListener {
-
+        fab2.setOnClickListener{
             val checklist = mutableListOf<Int>()
             val list:List<Int> = checklist
             var lastnum: Int = 0
@@ -158,16 +143,28 @@ class Disp02 : AppCompatActivity() {
                 dialog.openDialog(supportFragmentManager)
 
             }
+
+
         }
-        btneditcanc.setOnClickListener {
+
+        fab3.setOnClickListener{
             fab.setVisibility(View.VISIBLE)
-            btneditcanc.setVisibility(View.INVISIBLE)
+            fab2.setVisibility(View.INVISIBLE)
+            fab3.setVisibility(View.INVISIBLE)
             btnflg = 0
             val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
             val tr = vg.getChildAt(0) as TableRow
-            bar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
+            appbar.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
             ((tr.getChildAt(1))as Button).setVisibility(View.VISIBLE)
+            for(s in 1 until i+1){
+                val tr = vg.getChildAt(s) as TableRow
+                ((tr.getChildAt(0))as CheckBox).setVisibility(View.GONE)
+                ((tr.getChildAt(0)) as CheckBox).isChecked = false
+                ((tr.getChildAt(1))as Button).setEnabled(true)
+            }
+
         }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -176,12 +173,10 @@ class Disp02 : AppCompatActivity() {
                 btnflg = 1
                 val vg = findViewById<View>(R.id.tableLayout) as ViewGroup
                 val tr = vg.getChildAt(0) as TableRow
-                ((tr.getChildAt(1))as Button).setVisibility(View.INVISIBLE)
+                ((tr.getChildAt(1))as Button).setVisibility(View.GONE)
                 fab.setVisibility(View.INVISIBLE)
-                btneditcanc.setVisibility(View.VISIBLE)
-                btncancel.setVisibility(View.INVISIBLE)
-                btndelApply.setVisibility(View.INVISIBLE)
-                bar.setTitle("編集したい項目を選択してください")
+                fab3.setVisibility(View.VISIBLE)
+                appbar.setTitle("編集したい項目を選択してください")
                 return true
             }
             R.id.Delete -> {
@@ -193,11 +188,10 @@ class Disp02 : AppCompatActivity() {
                     //((tr.getChildAt(1))as Button).setEnabled(false)
                 }
                 val tr = vg.getChildAt(0) as TableRow
-                ((tr.getChildAt(1))as Button).setVisibility(View.INVISIBLE)
+                ((tr.getChildAt(1))as Button).setVisibility(View.GONE)
                 fab.setVisibility(View.INVISIBLE)
-                btncancel.setVisibility(View.VISIBLE)
-                btndelApply.setVisibility(View.VISIBLE)
-                btneditcanc.setVisibility(View.INVISIBLE)
+                fab2.setVisibility(View.VISIBLE)
+                fab3.setVisibility(View.VISIBLE)
                 return true
             }
 

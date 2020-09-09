@@ -27,31 +27,6 @@
 
 
     </ScrollView>
-    <Button
-            android:id="@+id/btndelApply"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:text="削除" android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.050000012"/>
-    <Button
-            android:id="@+id/btncancel"
-            android:layout_width="200dp"
-            android:layout_height="60dp" android:text="キャンセル"
-            android:visibility="gone" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.050000012"/>
-    <Button
-            android:id="@+id/btneditcanc"
-            android:layout_width="310dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp" android:text="キャンセル"
-            android:visibility="invisible" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/scrollView2" app:layout_constraintVertical_bias="0.0"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
