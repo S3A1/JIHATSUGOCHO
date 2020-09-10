@@ -21,15 +21,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_main" android:id="@+id/include"/>
+    <include android:id="@+id/include" layout="@layout/content_main" android:layout_height="638dp"/>
 
     <!--floatingactionbuttonについて
         app:srcCompatを変更することでボタンのイメージを変更可能-->
