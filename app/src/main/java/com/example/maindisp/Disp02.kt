@@ -89,62 +89,72 @@ class Disp02 : AppCompatActivity() {
         }
 
         fab2.setOnClickListener{
-            val checklist = mutableListOf<Int>()
-            val list:List<Int> = checklist
-            var lastnum: Int = 0
-            var cnt:Int = 0
-            btnflg = 0
+            val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+            // ダイアログ用にクラスを作っているのでそこに設定している
+            dialog.dialogTitle = "削除確認"
+            dialog.dialogMessage = "本当に削除しますか？"
+            //ここはヒント表示に切り替える
+            dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
 
-            getLayoutInflater().inflate(R.layout.singletable, vg)
-            //sからi(問題の数)ループしてチェックされているボタンのタグを取得
-            for(s in 1 until i +1){
-                val tr = vg.getChildAt(s) as TableRow
-                if(((tr.getChildAt(0))as CheckBox).isChecked()==true){
-                    var num :Int =((tr.getChildAt(0))as CheckBox).getTag().toString().toInt()
-                    checklist.add(num)
-                    lastnum = num
-                    cnt ++
+
+                val checklist = mutableListOf<Int>()
+                val list:List<Int> = checklist
+                var lastnum: Int = 0
+                var cnt:Int = 0
+                btnflg = 0
+
+                getLayoutInflater().inflate(R.layout.singletable, vg)
+//sからi(問題の数)ループしてチェックされているボタンのタグを取得
+                for(s in 1 until i +1){
+                    val tr = vg.getChildAt(s) as TableRow
+                    if(((tr.getChildAt(0))as CheckBox).isChecked()==true){
+                        var num :Int =((tr.getChildAt(0))as CheckBox).getTag().toString().toInt()
+                        checklist.add(num)
+                        lastnum = num
+                        cnt ++
+                    }
                 }
-            }
-            if(checklist.isNotEmpty()){
-                var setnum:Int =0
-                for(s in 0 until i+1){
-                    var flg:Int = 0
-                    for(ss in 0 until cnt) {
-                        if(checklist[ss] == s){
-                            flg = 1
+                if(checklist.isNotEmpty()){
+                    var setnum:Int =0
+                    for(s in 0 until i+1){
+                        var flg:Int = 0
+                        for(ss in 0 until cnt) {
+                            if(checklist[ss] == s){
+                                flg = 1
+                            }
+                        }
+                        if(flg == 0){
+                            GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + setnum] = GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + s]
+                            GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER *120 + setnum] =GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + s]
+                            setnum++
                         }
                     }
-                    if(flg == 0){
-                        GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + setnum] = GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + s]
-                        GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER *120 + setnum] =GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER * 120 + s]
-                        setnum++
+                    for(s in setnum until i) {
+                        GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + s] = null
+                        GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER *120 + s] = null
                     }
-                }
-                for(s in setnum until i) {
-                    GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + s] = null
-                    GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER *120 + s] = null
-                }
-                val intent = Intent(this, Disp02::class.java)
-                startActivity(intent)
-                finish()
-            }else{
-                //削除対象が選択されていませんのダイアログを表示
-                val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
-                dialog.dialogTitle = "エラー"
-                dialog.dialogMessage = "削除項目が選択されていません"
-                //dialog.isCancelButton = true
-                dialog.onOkClickListener  = DialogInterface.OnClickListener { _, _->
-                    // OK選択時の処理
                     val intent = Intent(this, Disp02::class.java)
                     startActivity(intent)
+                    finish()
+                }else{
+                    //削除対象が選択されていませんのダイアログを表示
+                    val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+                    dialog.dialogTitle = "エラー"
+                    dialog.dialogMessage = "削除項目が選択されていません"
+                    //dialog.isCancelButton = true
+                    dialog.onOkClickListener  = DialogInterface.OnClickListener { _, _->
+                        // OK選択時の処理
+                        val intent = Intent(this, Disp02::class.java)
+                        startActivity(intent)
+                    }
+                    // ダイアログ表示
+                    dialog.openDialog(supportFragmentManager)
+
                 }
-                // ダイアログ表示
-                dialog.openDialog(supportFragmentManager)
-
             }
-
-
+            dialog.isCancelButton = true
+            // ダイアログ表示
+            dialog.openDialog(supportFragmentManager)
         }
 
         fab3.setOnClickListener{
@@ -196,6 +206,8 @@ class Disp02 : AppCompatActivity() {
             }
 
             R.id.Home -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
                 finish()
                 return true
             }
