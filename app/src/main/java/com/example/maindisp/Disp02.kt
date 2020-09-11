@@ -86,6 +86,7 @@ class Disp02 : AppCompatActivity() {
         fab.setOnClickListener { view ->
             val intent= Intent(this,Disp08::class.java)
             startActivity(intent)
+            finish()
         }
 
         fab2.setOnClickListener{
@@ -149,7 +150,6 @@ class Disp02 : AppCompatActivity() {
                     }
                     // ダイアログ表示
                     dialog.openDialog(supportFragmentManager)
-
                 }
             }
             dialog.isCancelButton = true
