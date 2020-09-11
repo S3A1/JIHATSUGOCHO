@@ -63,6 +63,9 @@ class MainActivity : AppCompatActivity() {
                     GLOBAL.PAGE_NUMBER=0
                     tap_btnWarpDisp02(it)
                 }else if (btnflg == 1){
+
+
+
                     //編集
                     val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
                     // ダイアログ用にクラスを作っているのでそこに設定している
@@ -73,8 +76,16 @@ class MainActivity : AppCompatActivity() {
                     //ここはヒント表示に切り替える
                     dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
                         // OK選択時の処理
+                        GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
+                        val name = GLOBAL.NOTE[GLOBAL.NOTE_NUMBER].toString()
                         val str:String = dialog.dialogTextData
                         GLOBAL.NOTE[tag] =str
+                        val file = "$filesDir" + "/"+ name +".csv"
+                        val edifile = File(file)
+                        val refilename = "$filesDir" + "/"+str +".csv"
+                        val refile = File(refilename)
+                        edifile.renameTo(refile)
+
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         btnflg= 0
@@ -84,8 +95,22 @@ class MainActivity : AppCompatActivity() {
                     btnflg = 0
                     // ダイアログ表示
                     dialog.openDialog(supportFragmentManager)
-                }else{
+
+
+
+                } else{
                     //削除
+                    /*
+                    GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
+                    val name = GLOBAL.NOTE[GLOBAL.NOTE_NUMBER].toString()
+                    val file = "$filesDir" + "/"+ name +".csv"
+                    val delfile = File(file)
+                    if(delfile.delete()){
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    */
                     val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
                     // ダイアログ用にクラスを作っているのでそこに設定している
                     dialog.dialogTitle = "削除確認"
@@ -93,6 +118,9 @@ class MainActivity : AppCompatActivity() {
                     //ここはヒント表示に切り替える
                     dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
                         // OK選択時の処理
+                        GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
+                        val name = GLOBAL.NOTE[GLOBAL.NOTE_NUMBER].toString()
+
                         GLOBAL.NOTE_NUMBER=Integer.parseInt(it.getTag().toString())
                         var num = 0
                         while(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+num] != null){
@@ -119,6 +147,12 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         btnflg = 0
+                        val file = "$filesDir" + "/"+ name +".csv"
+                        val delfile = File(file)
+                        delfile.delete()
+
+
+
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -126,6 +160,8 @@ class MainActivity : AppCompatActivity() {
                     dialog.isCancelButton = true
                     // ダイアログ表示
                     dialog.openDialog(supportFragmentManager)
+
+
                 }
             }
             i++
