@@ -183,6 +183,8 @@ class MainActivity : AppCompatActivity() {
         //保存データを作成
         for(n in 0..119){
             if(GLOBAL.QUESTION[i*120+n]!=null){
+                GLOBAL.QUESTION[i*120+n]=GLOBAL.QUESTION[i*120+n]?.replace(",",".")
+                GLOBAL.ANSWER[i*120+n]=GLOBAL.ANSWER[i*120+n]?.replace(",",".")
                 strBuffer+=GLOBAL.QUESTION[i*120+n]+","+GLOBAL.ANSWER[i*120+n]+","+GLOBAL.LAST[i*120+n].toString()
                 if(GLOBAL.QUESTION[i*120+n+1]!=null){
                     strBuffer+="\n"
