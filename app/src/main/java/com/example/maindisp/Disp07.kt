@@ -20,15 +20,48 @@ class Disp07 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.activity_disp07)
-        txtListName.setText(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
         txtAnswer.setVisibility(View.INVISIBLE)
         setQuestion()
+        toolbar07.setTitle(GLOBAL.NOTE[GLOBAL.NOTE_NUMBER])
+
+        toolbar07.setOnMenuItemClickListener{
+            MenuItemSelected(it)
+            super.onOptionsItemSelected(it)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean{
         menuInflater.inflate(R.menu.disp07_menu, menu)
         return true
+    }
+
+    fun MenuItemSelected(item:MenuItem){
+        when (item.getItemId()) {
+            R.id.End -> {
+                val intent = Intent(this, Disp11::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.Delete -> {
+                val dialog : ClsTextInputDialog = ClsTextInputDialog(this)
+                // ダイアログ用にクラスを作っているのでそこに設定している
+                dialog.dialogTitle = "削除"
+                dialog.dialogMessage = "本当に削除しますか？"
+                dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
+                    // OK選択時の処理
+                    DeleteQuestion()
+                    setQuestion()
+                }
+                dialog.isCancelButton = true
+                // ダイアログ表示
+                dialog.openDialog(supportFragmentManager)
+            }
+            R.id.Home -> {
+                finish()
+            }
+        }
     }
 
     //次ボタン押された場合

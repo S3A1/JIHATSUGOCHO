@@ -6,6 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Disp07">
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar07"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary" android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/disp07_menu"/>
     <TextView
             android:text="@string/txtQuestion"
             android:layout_width="wrap_content"
@@ -37,10 +45,4 @@
             android:onClick="tap_btnNext"
             android:text="@string/btnNext" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp" android:id="@+id/txtListName" android:textSize="36sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
