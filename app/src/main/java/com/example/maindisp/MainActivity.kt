@@ -236,7 +236,6 @@ class MainActivity : AppCompatActivity() {
                 fab2.setVisibility(View.VISIBLE)
                 fab.setVisibility(View.INVISIBLE)
                 btnflg = 1
-                //ConstraintLayout.contextでググれ
                 return true
             }
             R.id.Delete -> {
@@ -260,6 +259,4 @@ class MainActivity : AppCompatActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
 }
-
