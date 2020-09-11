@@ -243,6 +243,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+  /*
     fun FileTest(){
         val fileName1 = "$filesDir" + "/果物の漢字.csv"
         val fileName2 = "$filesDir" + "/元素記号.csv"
@@ -265,7 +266,7 @@ class MainActivity : AppCompatActivity() {
             println(e)
         }
     }
-
+*/
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
@@ -290,10 +291,12 @@ class MainActivity : AppCompatActivity() {
                 //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
                 return true
             }
+            /*
             R.id.Import -> {
                 FileTest()
                 return true
             }
+            */
             else -> return super.onOptionsItemSelected(item)
         }
     }
