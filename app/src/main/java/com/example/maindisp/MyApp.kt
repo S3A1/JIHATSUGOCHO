@@ -1,6 +1,8 @@
 package com.example.maindisp
 import android.app.Application
 import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileWriter
 import java.util.*
 
 class MyApp :Application(){
@@ -13,10 +15,7 @@ class MyApp :Application(){
     var PAGE_NUMBER:Int=0//ページ番号管理用 0-119
     var NOTE_NUMBER:Int=0//ノート番号管理用 0-19
     var TIMESPAN:Int=5//通知間隔設定用
-
-
-    //吉田テスト
-    var FLG:Boolean = false
+    var FLG:Boolean = false//Disp02の編集分岐用フラグ
 
 
     //開始時処理

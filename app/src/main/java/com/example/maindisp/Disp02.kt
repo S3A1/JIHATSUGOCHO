@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import kotlinx.android.synthetic.main.activity_disp02.*
 import kotlinx.android.synthetic.main.activity_disp02.fab
 import kotlinx.android.synthetic.main.content_disp02.*
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileWriter
 
 class Disp02 : AppCompatActivity() {
 
@@ -134,6 +137,7 @@ class Disp02 : AppCompatActivity() {
                         GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER * 120 + s] = null
                         GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER *120 + s] = null
                     }
+                    rewritecsv()
                     val intent = Intent(this, Disp02::class.java)
                     startActivity(intent)
                     finish()
@@ -212,6 +216,26 @@ class Disp02 : AppCompatActivity() {
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+   fun rewritecsv(){
+        var soezi = 0
+        var writetext:String = ""
+        var filename = "$filesDir" + "/"+GLOBAL.NOTE[GLOBAL.NOTE_NUMBER]+".csv"
+        try{
+            val file = File(filename)
+            var filerewriter = FileWriter(file,false)
+            filerewriter.write("")
+            filerewriter.close()
+            var filewriter = FileWriter(file,true)
+            while(GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+soezi] != null) {
+                val line = GLOBAL.QUESTION[GLOBAL.NOTE_NUMBER*120+soezi] +","+GLOBAL.ANSWER[GLOBAL.NOTE_NUMBER*120+soezi]+",-1\n"
+                filewriter.write(line)
+                soezi++
+             }
+            filewriter.close()
+        }catch(e:FileNotFoundException){
+            println(e)
         }
     }
 }

@@ -177,6 +177,9 @@ class MainActivity : AppCompatActivity() {
         //ここはヒント表示に切り替える
         dialog.onOkClickListener = DialogInterface.OnClickListener { _, _->
             // OK選択時の処理
+            /*var check = 0
+            while(GLOBAL.NOTE[check]!=null){
+            }*/
             GLOBAL.AddNoteName(dialog.dialogTextData)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
